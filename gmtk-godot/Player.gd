@@ -3,9 +3,9 @@ extends KinematicBody2D
 var direction = Vector2()
 var velocity = Vector2()
 
-const SPEED = 10
-const TOP_SPEED = 400
-const DECELERATION = .1
+const SPEED = 30
+const TOP_SPEED = 50
+const DECELERATION = .7
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,12 +13,14 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	velocity.x += max(min(direction.x * SPEED, TOP_SPEED), -TOP_SPEED)
-	velocity.y +=  max(min(direction.y * SPEED, TOP_SPEED), -TOP_SPEED)
+	var normal_direction = direction.normalized()
 	
-	if direction.x == 0:
+	velocity.x += max(min(normal_direction.x * SPEED, TOP_SPEED), -TOP_SPEED)
+	velocity.y +=  max(min(normal_direction.y * SPEED, TOP_SPEED), -TOP_SPEED)
+	print(normal_direction)
+	if normal_direction.x == 0:
 		velocity.x = lerp(velocity.x, 0, DECELERATION)
-	if direction.y == 0:
+	if normal_direction.y == 0:
 		velocity.y = lerp(velocity.y, 0, DECELERATION)
 	
 	velocity = move_and_slide(velocity)
@@ -27,7 +29,7 @@ func _physics_process(delta):
 func _process(delta):
 	direction.x = 0
 	direction.y = 0
-
+	
 	if Input.is_action_pressed("ui_up"):
 		direction.y += -1
 	if Input.is_action_pressed("ui_down"):
