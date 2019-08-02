@@ -16,24 +16,22 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var normal_direction = direction.normalized()
-	
+
 	velocity = move_and_slide(velocity)
-	if $LeftRayCast.is_colliding():
-		print("HEY", $LeftRayCast.get_collider())
-		
+	if $LeftRayCast.is_colliding() and $LeftRayCast.get_collider().name == "Player":
 		direction.x += -1
 		velocity.x += max(min(normal_direction.x * SPEED, TOP_SPEED), -TOP_SPEED)
-	elif $RightRayCast.is_colliding():
+	elif $RightRayCast.is_colliding() and $RightRayCast.get_collider().name == "Player":
 		direction.x += 1
 		velocity.x += max(min(normal_direction.x * SPEED, TOP_SPEED), TOP_SPEED)
 	else:
 		direction.x = 0
 		velocity.x = lerp(velocity.x, 0, DECELERATION)
 	
-	if $UpRayCast.is_colliding():
+	if $UpRayCast.is_colliding() and $UpRayCast.get_collider().name == "Player":
 		direction.y += -1
 		velocity.y += max(min(normal_direction.y * SPEED, TOP_SPEED), -TOP_SPEED)
-	elif $DownRayCast.is_colliding():
+	elif $DownRayCast.is_colliding() and $DownRayCast.get_collider().name == "Player":
 		direction.y += 1
 		velocity.y += max(min(normal_direction.y * SPEED, TOP_SPEED), TOP_SPEED)
 	else:
