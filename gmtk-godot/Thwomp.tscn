@@ -21,11 +21,17 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="LeftRayCast" type="RayCast2D" parent="."]
-rotation = 1.5708
 enabled = true
-cast_to = Vector2( 0, 1000 )
+cast_to = Vector2( -1000, 0 )
 
 [node name="RightRayCast" type="RayCast2D" parent="."]
-rotation = -1.5708
+enabled = true
+cast_to = Vector2( 1000, 0 )
+
+[node name="UpRayCast" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, -1000 )
+
+[node name="DownRayCast" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 0, 1000 )

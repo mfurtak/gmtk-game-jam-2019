@@ -5,11 +5,8 @@ var velocity = Vector2()
 
 const SPEED = 30
 const TOP_SPEED = 40
-const DECELERATION = .7
+const DECELERATION = 0.9
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 
 onready var player = get_node("/root/Main/Player")
 # Called when the node enters the scene tree for the first time.
@@ -20,21 +17,28 @@ func _ready():
 func _process(delta):
 	var normal_direction = direction.normalized()
 	
-	# velocity.x += max(min(normal_direction.x * SPEED, TOP_SPEED), -TOP_SPEED)
-	# velocity.y +=  max(min(normal_direction.y * SPEED, TOP_SPEED), -TOP_SPEED)
-	#print(normal_direction)
-	if normal_direction.x == 0:
-		velocity.x = lerp(velocity.x, 0, DECELERATION)
-	#if normal_direction.y == 0:
-	#	velocity.y = lerp(velocity.y, 0, DECELERATION)
-	
 	velocity = move_and_slide(velocity)
 	if $LeftRayCast.is_colliding():
+		print("HEY", $LeftRayCast.get_collider())
+		
 		direction.x += -1
 		velocity.x += max(min(normal_direction.x * SPEED, TOP_SPEED), -TOP_SPEED)
-	if $RightRayCast.is_colliding():
+	elif $RightRayCast.is_colliding():
 		direction.x += 1
 		velocity.x += max(min(normal_direction.x * SPEED, TOP_SPEED), TOP_SPEED)
+	else:
+		direction.x = 0
+		velocity.x = lerp(velocity.x, 0, DECELERATION)
+	
+	if $UpRayCast.is_colliding():
+		direction.y += -1
+		velocity.y += max(min(normal_direction.y * SPEED, TOP_SPEED), -TOP_SPEED)
+	elif $DownRayCast.is_colliding():
+		direction.y += 1
+		velocity.y += max(min(normal_direction.y * SPEED, TOP_SPEED), TOP_SPEED)
+	else:
+		direction.y = 0
+		velocity.y = lerp(velocity.y, 0, DECELERATION)
 
 
 
