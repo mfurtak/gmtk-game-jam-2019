@@ -7,7 +7,7 @@
 extents = Vector2( 32, 32 )
 
 [node name="Thwomp" type="KinematicBody2D"]
-position = Vector2( 192, 128 )
+position = Vector2( 640, 352 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -19,3 +19,13 @@ texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="LeftRayCast" type="RayCast2D" parent="."]
+rotation = 1.5708
+enabled = true
+cast_to = Vector2( 0, 1000 )
+
+[node name="RightRayCast" type="RayCast2D" parent="."]
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 0, 1000 )
