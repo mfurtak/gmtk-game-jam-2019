@@ -1,5 +1,12 @@
 extends KinematicBody2D
 
+var direction = Vector2()
+var velocity = Vector2()
+
+const SPEED = 30
+const TOP_SPEED = 40
+const DECELERATION = .7
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -11,10 +18,23 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	var normal_direction = direction.normalized()
+	
+	# velocity.x += max(min(normal_direction.x * SPEED, TOP_SPEED), -TOP_SPEED)
+	# velocity.y +=  max(min(normal_direction.y * SPEED, TOP_SPEED), -TOP_SPEED)
+	#print(normal_direction)
+	if normal_direction.x == 0:
+		velocity.x = lerp(velocity.x, 0, DECELERATION)
+	#if normal_direction.y == 0:
+	#	velocity.y = lerp(velocity.y, 0, DECELERATION)
+	
+	velocity = move_and_slide(velocity)
 	if $LeftRayCast.is_colliding():
-		print("see you on the left!")
+		direction.x += -1
+		velocity.x += max(min(normal_direction.x * SPEED, TOP_SPEED), -TOP_SPEED)
 	if $RightRayCast.is_colliding():
-		print("see you on the right!")
+		direction.x += 1
+		velocity.x += max(min(normal_direction.x * SPEED, TOP_SPEED), TOP_SPEED)
 
 
 
