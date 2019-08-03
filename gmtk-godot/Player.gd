@@ -2,6 +2,12 @@ extends KinematicBody2D
 
 enum Items {SWORD, BOW, SHIELD}
 
+var sword_resource =  preload("res://sprites/sword.png")
+var bow_resource =  preload("res://sprites/bow.png")
+var shield_resource =  preload("res://sprites/shield.png")
+
+var items_to_images = {}
+
 var moving_direction = Vector2()
 var facing_direction = Vector2(1,0)
 var velocity = Vector2()
@@ -27,19 +33,23 @@ var is_attacking = false
 var is_shield_attacking = false
 var bow_cool = true
 
-var items_queue = [Items.BOW, Items.SHIELD, Items.SWORD]
+#var items_queue = [Items.BOW, Items.SHIELD, Items.SWORD]
+var items_queue = [Items.SHIELD]
 var current_item = items_queue[-1]
 var sprites = null
 var current_sprite = null
 var current_rotation = 0
 
 onready var arrow_scene = preload("res://Arrow.tscn")
-onready var shield_scene = preload("res://Shield.tscn")
-var shield = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sprites = [$sword, $shield, $bow]
+	items_to_images = {
+		Items.SWORD: sword_resource,
+		Items.SHIELD: shield_resource,
+		Items.BOW: bow_resource
+	}
 	_render()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -61,7 +71,7 @@ func _physics_process(delta):
 #	
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
-		print("Player collided with: ", collision.collider.name)
+			
 		if is_attacking and collision.collider.has_method("on_attacked"):
 			collision.collider.on_attacked()
 
@@ -93,10 +103,7 @@ func _process(delta):
 		
 	if is_action_pressed:
 		_on_attack()
-		
-#	$ShieldSprite.
-		
-	
+
 	var total_item_period = float(BASE_ITEMS_PERIOD + (PER_ITEM_PERIOD * items_queue.size()))
 	var item_duration = total_item_period / float(items_queue.size())
 	
@@ -106,10 +113,8 @@ func _process(delta):
 func on_player_attacked():
 	match current_item:
 		Items.SWORD:
-			#print("zow!")
 			current_health = max(MIN_HEALTH, current_health - 1)
 		Items.BOW:
-			#print("ouch!")
 			current_health = max(MIN_HEALTH, current_health - 1)
 		Items.SHIELD:
 			pass
@@ -139,10 +144,7 @@ func _on_attack():
 				print("BOW ATTACK!!")
 		Items.SHIELD:
 			if not is_shield_attacking:
-				print("Shield ATTACK!!")
 				$ShieldAttackTimer.start()
-#				$Shield.position = position + (facing_direction)
-			
 		_:
 			print("spillover in get_item_name")
 			
@@ -160,6 +162,9 @@ func get_item_name(item_enum):
 			return 'shield'
 		_:
 			print("spillover in get_item_name")
+			
+func get_item_image(item):
+	return items_to_images.get(item)
 
 func _on_ItemSwapTimer_timeout():
 	# Rotate the item
@@ -175,13 +180,18 @@ func _render():
 		$AttackSprite.show()
 	else:
 		$AttackSprite.hide()
-		
+
 	if current_item == Items.SHIELD:
-		$ShieldSprite.show()
-		$ShieldSprite.rotation = current_rotation
-		$ShieldSprite.position = $ShieldAttackTimer.time_left * 10 * facing_direction + facing_direction*16
+		$Equipped/Shield.show()
+		if $ShieldAttackTimer.time_left > 0:
+			$Equipped/Shield.set_attacking(true)
+		else:
+			$Equipped/Shield.set_attacking(false)
+			
+		$Equipped/Shield.rotation = current_rotation
+		$Equipped/Shield.position = $ShieldAttackTimer.time_left * 10 * facing_direction + facing_direction*16
 	else:
-		$ShieldSprite.hide()
+		$Equipped/Shield.hide()
 	
 func _render_color():
 	var next_sprite = _get_item_sprite()

@@ -46,10 +46,10 @@ func _process(delta):
 			collision.collider.on_player_attacked()
 
 func on_attacked():
-	pass # self.queue_free()
+	pass
 
 func on_shot(damage):
-	print("was shot!")
+	pass
 	
 func on_shield_attacked(damage):
 	velocity.x = -velocity.x * damage
