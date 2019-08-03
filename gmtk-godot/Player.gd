@@ -22,6 +22,7 @@ var current_health = 100
 
 var is_pink = false
 var is_attacking = false
+var is_shield_attacking = false
 var bow_cool = true
 
 var items_queue = [Items.BOW, Items.SHIELD, Items.SWORD]
@@ -31,6 +32,8 @@ var current_sprite = null
 var current_rotation = 0
 
 onready var arrow_scene = preload("res://Arrow.tscn")
+onready var shield_scene = preload("res://Shield.tscn")
+var shield = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -86,6 +89,9 @@ func _process(delta):
 		
 	if is_action_pressed:
 		_on_attack()
+		
+#	$ShieldSprite.
+		
 	
 	var total_item_period = float(BASE_ITEMS_PERIOD + (PER_ITEM_PERIOD * items_queue.size()))
 	var item_duration = total_item_period / float(items_queue.size())
@@ -126,7 +132,11 @@ func _on_attack():
 				arrow.direction = facing_direction
 				print("BOW ATTACK!!")
 		Items.SHIELD:
-			print("Shield ATTACK!!")
+			if not is_shield_attacking:
+				print("Shield ATTACK!!")
+				$ShieldAttackTimer.start()
+#				$Shield.position = position + (facing_direction)
+			
 		_:
 			print("spillover in get_item_name")
 			pass
@@ -161,6 +171,13 @@ func _render():
 		$AttackSprite.show()
 	else:
 		$AttackSprite.hide()
+		
+	if current_item == Items.SHIELD:
+		$ShieldSprite.show()
+		$ShieldSprite.rotation = current_rotation
+		$ShieldSprite.position = $ShieldAttackTimer.time_left * 10 * facing_direction + facing_direction*16
+	else:
+		$ShieldSprite.hide()
 	
 func _render_color():
 	var next_sprite = _get_item_sprite()
@@ -169,7 +186,6 @@ func _render_color():
 		for sprite in sprites:
 			sprite.hide()
 		current_sprite.show()
-		
 
 func _get_item_sprite():
 	match current_item:
@@ -204,7 +220,9 @@ func _get_rotation():
 
 func _on_SwordAttackTimer_timeout():
 	is_attacking = false
-
+	
+func _on_ShieldAttackTimer_timeout():
+	is_shield_attacking = false
 
 func _on_BowCooldown_timeout():
 	bow_cool = true

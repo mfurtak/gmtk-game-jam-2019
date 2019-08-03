@@ -51,6 +51,9 @@ func on_attacked():
 
 func on_shot():
 	print("was shot!")
+	
+func on_shield_hit():
+	print("GOT SHUV'D")
 
 func _physics_process(delta):
 	#print(player.global_position)
