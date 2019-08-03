@@ -10,7 +10,7 @@ const DECELERATION = 0.2
 func on_attacked():
 	self.queue_free()
 
-func on_shot():
+func on_shot(damage):
 	self.queue_free()
 
 func _physics_process(delta):

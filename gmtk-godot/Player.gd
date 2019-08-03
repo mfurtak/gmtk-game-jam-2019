@@ -6,6 +6,9 @@ var moving_direction = Vector2()
 var facing_direction = Vector2(1,0)
 var velocity = Vector2()
 var is_action_pressed = false
+var is_dead = false
+
+signal game_over
 
 const SPEED = 10
 const TOP_SPEED = 200
@@ -113,7 +116,10 @@ func on_player_attacked():
 		_:
 			print("spillover in get_item_name")
 			
-	
+	#TODO send enemy to death scene
+	if (current_health <= 0 && !is_dead):
+		on_death();
+		
 func _on_attack():
 	match current_item:
 		Items.SWORD:
@@ -215,6 +221,11 @@ func _get_rotation():
 		return PI / 2.0
 	else:
 		return current_rotation
+		
+func on_death():
+	is_dead = true
+	$wilhelmScream.play()
+	emit_signal("game_over")
 
 func _on_SwordAttackTimer_timeout():
 	is_attacking = false
