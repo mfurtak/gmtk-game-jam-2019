@@ -1,8 +1,6 @@
 extends Area2D
 
-var attacking setget set_attacking, get_attacking
-var player_velocity setget set_player_velocity, get_player_velocity
-
+var attacking setget set_shield_attacking, get_shield_attacking
 
 func _ready():
 	connect('body_entered', self, '_on_entered')
@@ -16,23 +14,17 @@ func _physics_process(delta):
 	pass
 
 func _on_entered(body):
-	if body.has_method('on_shield_attacked'):
+	if visible and body.has_method('on_shield_attacked'):
 		var damage = 0
-		if attacking:
+		if get_shield_attacking():
 			damage = 2
 		else:
 			damage = 1.2
 			
 		body.on_shield_attacked(damage)
 		
-func set_attacking(new_attacking):
+func set_shield_attacking(new_attacking):
     attacking = new_attacking
 
-func get_attacking():
+func get_shield_attacking():
     return attacking
-	
-func set_player_velocity(new_player_velocity):
-    player_velocity = new_player_velocity
-
-func get_player_velocity():
-    return player_velocity
