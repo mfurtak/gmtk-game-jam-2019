@@ -2,7 +2,7 @@
 
 [node name="HUD" type="CanvasLayer"]
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="HudBar" type="ColorRect" parent="."]
 margin_left = 1.0
 margin_top = 627.0
 margin_right = 1025.0
@@ -13,16 +13,100 @@ color = Color( 0.00784314, 0.121569, 0.0392157, 1 )
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 852.0
-margin_top = -14.0
-margin_right = -5.0
-margin_bottom = -2.0
+margin_left = 440.0
+margin_top = -18.0
+margin_right = -417.0
+margin_bottom = -6.0
 percent_visible = false
 
 [node name="HealthProgress" type="ProgressBar" parent="."]
-anchor_right = 0.161
-anchor_bottom = 0.01
-margin_left = 8.0
-margin_top = 684.0
-margin_right = 8.13599
-margin_bottom = 690.96
+anchor_left = 0.008
+anchor_top = 0.972
+anchor_right = 0.169
+anchor_bottom = 0.991
+margin_left = -0.192
+margin_top = -0.288025
+margin_right = -0.056015
+margin_bottom = 0.335938
+rect_clip_content = true
+percent_visible = false
+
+[node name="ItemCards" type="Node" parent="."]
+
+[node name="ActiveItem" type="ColorRect" parent="ItemCards"]
+anchor_right = 0.098
+anchor_bottom = 0.136
+margin_left = 475.0
+margin_top = 602.0
+margin_right = 470.648
+margin_bottom = 586.256
+color = Color( 0.831373, 0.737255, 0.113725, 1 )
+
+[node name="Label" type="RichTextLabel" parent="ItemCards/ActiveItem"]
+margin_left = 2.0
+margin_right = 93.0
+margin_bottom = 78.0
+
+[node name="FirstItem" type="ColorRect" parent="ItemCards"]
+margin_left = 626.0
+margin_top = 612.0
+margin_right = 698.0
+margin_bottom = 684.0
+color = Color( 0.592157, 0.509804, 0.282353, 1 )
+
+[node name="Label" type="RichTextLabel" parent="ItemCards/FirstItem"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 1.0
+margin_bottom = 1.0
+
+[node name="SecondItem" type="ColorRect" parent="ItemCards"]
+margin_left = 721.0
+margin_top = 613.0
+margin_right = 793.0
+margin_bottom = 685.0
+color = Color( 0.592157, 0.509804, 0.282353, 1 )
+
+[node name="Label" type="RichTextLabel" parent="ItemCards/SecondItem"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1.0
+
+[node name="Third" type="ColorRect" parent="ItemCards"]
+margin_left = 814.0
+margin_top = 614.0
+margin_right = 886.0
+margin_bottom = 686.0
+color = Color( 0.592157, 0.509804, 0.282353, 1 )
+
+[node name="Label" type="RichTextLabel" parent="ItemCards/Third"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 1.0
+margin_bottom = 1.0
+
+[node name="ItemStack" type="ColorRect" parent="ItemCards"]
+margin_left = 904.0
+margin_top = 614.0
+margin_right = 976.0
+margin_bottom = 686.0
+color = Color( 0.592157, 0.509804, 0.282353, 1 )
+
+[node name="ColorRect" type="ColorRect" parent="ItemCards/ItemStack"]
+margin_left = 18.0
+margin_top = 14.0
+margin_right = 86.0
+margin_bottom = 82.0
+color = Color( 0.364706, 0.313726, 0.172549, 1 )
+
+[node name="ColorRect2" type="ColorRect" parent="ItemCards/ItemStack"]
+margin_left = 13.0
+margin_top = 7.0
+margin_right = 81.0
+margin_bottom = 75.0
+color = Color( 0.45098, 0.388235, 0.211765, 1 )
+
+[node name="TopCard" type="ColorRect" parent="ItemCards/ItemStack"]
+margin_right = 72.0
+margin_bottom = 72.0
+color = Color( 0.592157, 0.509804, 0.282353, 1 )
