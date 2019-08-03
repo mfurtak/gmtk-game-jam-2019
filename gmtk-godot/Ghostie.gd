@@ -2,10 +2,13 @@ extends Area2D
 
 var direction = Vector2()
 var velocity = Vector2()
-
+const MAX_HEALTH = 30.0
 const SPEED = 8
 const TOP_SPEED = 30
 const DECELERATION = 0.9
+
+var current_health = MAX_HEALTH
+var current_color
 
 onready var player = get_node("/root/Main/Player")
 # Called when the node enters the scene tree for the first time.
@@ -14,7 +17,6 @@ func _ready():
 	connect('body_entered', self, '_on_body_entered')
 	
 func _on_body_entered(body):
-	print("ghost entered: ", body.name)
 	if body.name == "Player":
 		print("BOO!")
 
@@ -29,13 +31,18 @@ func _process(delta):
 func on_attacked():
 	pass
 
-func on_shot():
-	self.queue_free()
+func on_shot(damage):
+	current_health -= damage
+	$GhostSprite.modulate = Color(1, 1, 1, current_health / MAX_HEALTH)
+	current_color = $GhostSprite.modulate
+	#is_animating_damage = true
+	#_damaged_behavior()
+	$DamagedAnimation.play()
+	if (current_health <= 0):
+		self.queue_free()
 
-func _physics_process(delta):
-	#print(player.global_position)
-	#print(get_position())
-    # detect player overlap in x or y?
-	#print("ASDF" + str(player))
-	#print("facebook.com" + str(player.translation))
-	pass
+#func _damaged_behavior():
+#	if (is_animating_damage):
+#		$GhostSprite.modulate
+	#else:
+		

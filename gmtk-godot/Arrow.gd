@@ -3,6 +3,7 @@ extends Area2D
 const SPEED = 30
 var direction setget set_direction
 var dead = false
+var damage = 10
 
 func _ready():
 	connect('body_entered', self, '_on_entered')
@@ -18,7 +19,7 @@ func _on_entered(body):
 		if body.name == "TileMap":
 			dead = true
 		if body.has_method("on_shot"):
-			body.on_shot()
+			body.on_shot(damage)
 			print(body.name)
 			queue_free()
 		
