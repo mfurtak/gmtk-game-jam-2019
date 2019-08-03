@@ -7,6 +7,8 @@ const SPEED = 30
 const TOP_SPEED = 50
 const DECELERATION = .7
 
+var is_pink = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -42,3 +44,10 @@ func _process(delta):
 	if Input.is_action_pressed("ui_right"):
 		direction.x += 1
 	
+
+func _on_ItemSwapTimer_timeout():
+	is_pink = !is_pink
+	if is_pink:
+		$AnimatedSprite.play("pink")
+	else:
+		$AnimatedSprite.play("default")
