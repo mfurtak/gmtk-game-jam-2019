@@ -2,14 +2,13 @@ extends KinematicBody2D
 
 enum Items {SWORD, BOW, SHIELD}
 
-
 var moving_direction = Vector2()
 var facing_direction = Vector2(1,0)
 var velocity = Vector2()
 var is_action_pressed = false
 
-const SPEED = 30
-const TOP_SPEED = 50
+const SPEED = 10
+const TOP_SPEED = 20
 const DECELERATION = .7
 const ARROW_OFFSET = 48
 
@@ -50,13 +49,14 @@ func _physics_process(delta):
 	if normal_moving_direction.y == 0:
 		velocity.y = lerp(velocity.y, 0, DECELERATION)
 	
-	var collision = move_and_collide(velocity * delta)
-	if collision:
-		# Do stuff
-		if is_attacking:
-			if collision.collider.has_method("on_attacked"):
-				collision.collider.on_attacked()
+	velocity = move_and_slide(velocity)
+	# print("player velocity: ", velocity)
 	
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		print("Player collided with: ", collision.collider.name)
+		if is_attacking and collision.collider.has_method("on_attacked"):
+			collision.collider.on_attacked()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

@@ -8,7 +8,7 @@
 [ext_resource path="res://player_bow.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 32 )
+extents = Vector2( 30, 30 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
