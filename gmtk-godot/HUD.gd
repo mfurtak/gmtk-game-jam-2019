@@ -41,17 +41,18 @@ func _process(delta):
 	$CurrentItemProgress.value = progress
 	
 	_set_cards()
-	
 
 func _set_cards():
 	var items_queue = player.items_queue
 	
 	for i in range(4):
+		var hud_item = hud_items[i]
 		if items_queue.size() > i:
-			hud_items[i].show()
-			hud_items[i].set_text(player.get_item_name(items_queue[i]))
+			var item = items_queue[i]
+			hud_item.show()
+			hud_item.set_image(player.get_item_image(item))
 		else:
-			hud_items[i].hide()
+			hud_item.hide()
 
 	if items_queue.size() >= 5:
 		item_stack_node.show()
