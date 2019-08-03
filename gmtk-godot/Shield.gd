@@ -1,5 +1,7 @@
 extends Area2D
 
+signal shake_requested
+
 var attacking setget set_attacking, get_attacking
 var player_velocity setget set_player_velocity, get_player_velocity
 
@@ -24,6 +26,7 @@ func _on_entered(body):
 			damage = 1.2
 			
 		body.on_shield_attacked(damage)
+		emit_signal("shake_requested")
 		
 func set_attacking(new_attacking):
     attacking = new_attacking

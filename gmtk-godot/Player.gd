@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal shake_requested
+
 enum Items {SWORD, BOW, SHIELD}
 
 var sword_resource =  preload("res://sprites/sword.png")

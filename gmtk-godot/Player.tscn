@@ -89,7 +89,9 @@ wait_time = 0.5
 
 [node name="Equipped" type="Node2D" parent="."]
 
-[node name="Shield" parent="Equipped" instance=ExtResource( 8 )]
+[node name="Shield" parent="Equipped" groups=[
+"requests_shake",
+] instance=ExtResource( 8 )]
 [connection signal="timeout" from="ItemSwapTimer" to="." method="_on_ItemSwapTimer_timeout"]
 [connection signal="timeout" from="SwordAttackTimer" to="." method="_on_SwordAttackTimer_timeout"]
 [connection signal="timeout" from="ShieldAttackTimer" to="." method="_on_ShieldAttackTimer_timeout"]

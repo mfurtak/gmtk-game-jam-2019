@@ -5,8 +5,14 @@ var level
 
 func _ready():
 	print("Main ready")
+	
+	# TODO(mfurtak) this is still needed?
 	for node in get_tree().get_nodes_in_group('ItemSwap'):
 		$Player/ItemSwapTimer.connect("timeout", node, "_on_ItemSwapTimer_timeout")
+	
+	# Connect up to anything that can request a screen shake
+	for node in get_tree().get_nodes_in_group('requests_shake'):
+		node.connect("shake_requested", self, "_on_shake_requested")
 	
 	initialize_level(current_level)
 
@@ -20,7 +26,11 @@ func initialize_level(level_file):
 	add_child(level)
 	level.get_node("Exit").connect("exited", self, "_on_exited")
 	$Player.set_position(level.get_node("PlayerSpawn").position)
+	$Player.connect("requests_shake", self, "_on_Player_requests_shake")
 
 func _on_exited(next_level):
 	print(next_level)
 	initialize_level(next_level)
+
+func _on_shake_requested():
+	$Camera2D/ScreenShake.start()
