@@ -2,6 +2,12 @@ extends KinematicBody2D
 
 enum Items {SWORD, BOW, SHIELD}
 
+var sword_resource =  preload("res://player_sword.png")
+var bow_resource =  preload("res://player_bow.png")
+var shield_resource =  preload("res://player_shield.png")
+
+var items_to_images = {}
+
 var moving_direction = Vector2()
 var facing_direction = Vector2(1,0)
 var velocity = Vector2()
@@ -37,6 +43,11 @@ var shield = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sprites = [$sword, $shield, $bow]
+	items_to_images = {
+		Items.SWORD: sword_resource,
+		Items.SHIELD: shield_resource,
+		Items.BOW: bow_resource
+	}
 	_render()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -90,9 +101,6 @@ func _process(delta):
 		
 	if is_action_pressed:
 		_on_attack()
-		
-#	$ShieldSprite.
-		
 	
 	var total_item_period = float(BASE_ITEMS_PERIOD + (PER_ITEM_PERIOD * items_queue.size()))
 	var item_duration = total_item_period / float(items_queue.size())
@@ -154,6 +162,9 @@ func get_item_name(item_enum):
 			return 'shield'
 		_:
 			print("spillover in get_item_name")
+			
+func get_item_image(item):
+	return items_to_images.get(item)
 
 func _on_ItemSwapTimer_timeout():
 	# Rotate the item
