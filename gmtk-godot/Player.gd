@@ -12,6 +12,10 @@ const DECELERATION = .7
 const BASE_ITEMS_PERIOD = 3 # seconds
 const PER_ITEM_PERIOD = 1
 
+const MAX_HEALTH = 100
+const MIN_HEALTH = 0
+var current_health = 100
+
 var is_pink = false
 var is_attacking = false
 
@@ -52,6 +56,10 @@ func _physics_process(delta):
 #	elif not is_attacking:
 #		$AttackSprite.visible = false
 
+func on_player_attacked():
+	current_health = max(MIN_HEALTH, current_health - 0.01)
+	print("OUCH")
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	direction.x = 0
@@ -68,12 +76,16 @@ func _process(delta):
 		direction.x += 1
 	if Input.is_action_just_pressed("ui_select"):
 		is_action_pressed = true
+		
+	if is_action_pressed:
+		print("ATTACK WITH: ", current_item)
 	
 	var total_item_period = float(BASE_ITEMS_PERIOD + (PER_ITEM_PERIOD * items_queue.size()))
 	var item_duration = total_item_period / float(items_queue.size())
 	
 	$ItemSwapTimer.wait_time = item_duration
 
+	
 func _on_ItemSwapTimer_timeout():
 	current_item = items_queue.pop_front()
 	items_queue.push_back(current_item)

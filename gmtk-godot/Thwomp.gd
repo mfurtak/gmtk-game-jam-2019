@@ -38,12 +38,11 @@ func _process(delta):
 		velocity = lerp(velocity, Vector2(), DECELERATION)
 
 	var collision = move_and_collide(velocity * delta)
-	# if collision:
-		# Do stuff
-		#print("THWOMP BONK ", collision.collider.name)
+	if collision:
+		if  collision.collider.has_method("on_player_attacked"):
+			collision.collider.on_player_attacked()
 
 func on_attacked():
-	print("THWOMP DED!")
 	self.queue_free()
 
 

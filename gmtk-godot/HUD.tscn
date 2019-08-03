@@ -2,8 +2,27 @@
 
 [node name="HUD" type="CanvasLayer"]
 
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 1.0
+margin_top = 627.0
+margin_right = 1025.0
+margin_bottom = 703.0
+color = Color( 0.00784314, 0.121569, 0.0392157, 1 )
+
 [node name="CurrentItemProgress" type="ProgressBar" parent="."]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 852.0
 margin_top = -14.0
+margin_right = -5.0
+margin_bottom = -2.0
+percent_visible = false
+
+[node name="HealthProgress" type="ProgressBar" parent="."]
+anchor_right = 0.161
+anchor_bottom = 0.01
+margin_left = 8.0
+margin_top = 684.0
+margin_right = 8.13599
+margin_bottom = 690.96
