@@ -27,11 +27,11 @@ var current_health = 100
 
 var is_pink = false
 var is_attacking = false
+var is_sword_attacking = false
 var is_shield_attacking = false
 var bow_cool = true
 
-#var items_queue = [Items.BOW, Items.SHIELD, Items.SWORD]
-var items_queue = [Items.SHIELD]
+var items_queue = [Items.BOW, Items.SHIELD, Items.SWORD]
 var current_item = items_queue[-1]
 var sprites = null
 var current_sprite = null
@@ -122,9 +122,9 @@ func on_player_attacked():
 func _on_attack():
 	match current_item:
 		Items.SWORD:
-			if not is_attacking:
+			if not is_sword_attacking:
 				print("SWORD ATTACK!!")
-				is_attacking = true
+				is_sword_attacking = true
 				$SwordAttackTimer.start()
 		Items.BOW:
 			if bow_cool:
@@ -135,6 +135,7 @@ func _on_attack():
 				get_parent().add_child(arrow)
 				arrow.position = position + (facing_direction*ARROW_OFFSET)
 				arrow.direction = facing_direction
+				
 				print("BOW ATTACK!!")
 		Items.SHIELD:
 			if not is_shield_attacking:
@@ -170,23 +171,46 @@ func _on_ItemSwapTimer_timeout():
 func _render():
 	_render_color()
 	_render_facing_direction()
-	if is_attacking:
-		$AttackSprite.show()
-	else:
-		$AttackSprite.hide()
+	
+	_do_sword_stuff()
+	_do_shield_stuff()
+	_do_bow_stuff()
 
+func _do_sword_stuff():
+	if current_item == Items.SWORD:
+		$Equipped/Sword.show()
+		if $SwordAttackTimer.time_left > 0:
+			$Equipped/Sword.set_sword_attacking(true)
+		else:
+			$Equipped/Sword.set_sword_attacking(false)
+			
+		$Equipped/Sword.rotation = current_rotation
+		$Equipped/Sword.position = $SwordAttackTimer.time_left * 10 * facing_direction + facing_direction*64
+	else:
+		$Equipped/Sword.hide()
+		
+func _do_shield_stuff():
 	if current_item == Items.SHIELD:
 		$Equipped/Shield.show()
 		if $ShieldAttackTimer.time_left > 0:
-			$Equipped/Shield.set_attacking(true)
+			$Equipped/Shield.set_shield_attacking(true)
 		else:
-			$Equipped/Shield.set_attacking(false)
+			$Equipped/Shield.set_shield_attacking(false)
 			
 		$Equipped/Shield.rotation = current_rotation
 		$Equipped/Shield.position = $ShieldAttackTimer.time_left * 10 * facing_direction + facing_direction*16
 	else:
 		$Equipped/Shield.hide()
-	
+
+func _do_bow_stuff():
+	if current_item == Items.BOW:
+		$Equipped/Bow.show()
+		$Equipped/Bow.rotation = current_rotation
+		if not bow_cool:
+			$Equipped/Bow.position = $BowCooldown.time_left * 5 * facing_direction + facing_direction*16
+	else:
+		$Equipped/Bow.hide()
+		
 func _render_color():
 	var next_sprite = _get_item_sprite()
 	if next_sprite != current_sprite:
@@ -227,7 +251,7 @@ func _get_rotation():
 		return current_rotation
 
 func _on_SwordAttackTimer_timeout():
-	is_attacking = false
+	is_sword_attacking = false
 	
 func _on_ShieldAttackTimer_timeout():
 	is_shield_attacking = false
