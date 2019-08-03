@@ -17,7 +17,6 @@ func _ready():
 func _process(delta):
 	var normal_direction = direction.normalized()
 
-	velocity = move_and_slide(velocity)
 	if $LeftRayCast.is_colliding() and $LeftRayCast.get_collider().name == "Player":
 		direction.x += -1
 		velocity.x += max(min(normal_direction.x * SPEED, TOP_SPEED), -TOP_SPEED)
@@ -37,6 +36,11 @@ func _process(delta):
 	else:
 		direction.y = 0
 		velocity.y = lerp(velocity.y, 0, DECELERATION)
+		
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		# Do stuff
+    	print("THWOMP BONK ", collision.collider.name)
 
 
 

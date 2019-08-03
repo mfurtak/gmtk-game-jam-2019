@@ -17,13 +17,16 @@ func _physics_process(delta):
 	
 	velocity.x += max(min(normal_direction.x * SPEED, TOP_SPEED), -TOP_SPEED)
 	velocity.y +=  max(min(normal_direction.y * SPEED, TOP_SPEED), -TOP_SPEED)
-	print(normal_direction)
+
 	if normal_direction.x == 0:
 		velocity.x = lerp(velocity.x, 0, DECELERATION)
 	if normal_direction.y == 0:
 		velocity.y = lerp(velocity.y, 0, DECELERATION)
 	
-	velocity = move_and_slide(velocity)
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		# Do stuff
+    	print("PLAYER SLAP ", collision.collider.name)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
