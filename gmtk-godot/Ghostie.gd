@@ -39,12 +39,4 @@ func on_shot(damage):
 		self.queue_free()
 
 func _on_DamageAnimation_timeout():
-	print("trying to stop")
 	$DamagedAnimation.stop()
-
-#func _damaged_behavior():
-#	if (is_animating_damage):
-#		$GhostSprite.modulate
-	#else:
-		
-
