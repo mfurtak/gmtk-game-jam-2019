@@ -8,7 +8,6 @@ const TOP_SPEED = 30
 const DECELERATION = 0.9
 
 var current_health = MAX_HEALTH
-var current_color
 
 onready var player = get_node("/root/Main/Player")
 # Called when the node enters the scene tree for the first time.
@@ -33,16 +32,19 @@ func on_attacked():
 
 func on_shot(damage):
 	current_health -= damage
-	$GhostSprite.modulate = Color(1, 1, 1, current_health / MAX_HEALTH)
-	current_color = $GhostSprite.modulate
-	#is_animating_damage = true
-	#_damaged_behavior()
+	$DamagedAnimation.modulate = Color(1, 1, 1, current_health / MAX_HEALTH)
 	$DamagedAnimation.play()
+	$DamageAnimationTimer.start()
 	if (current_health <= 0):
 		self.queue_free()
+
+func _on_DamageAnimation_timeout():
+	print("trying to stop")
+	$DamagedAnimation.stop()
 
 #func _damaged_behavior():
 #	if (is_animating_damage):
 #		$GhostSprite.modulate
 	#else:
 		
+
