@@ -49,7 +49,7 @@ func _process(delta):
 func on_attacked():
 	self.queue_free()
 
-func on_shot():
+func on_shot(damage):
 	print("was shot!")
 	
 func on_shield_hit():

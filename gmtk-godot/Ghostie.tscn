@@ -1,10 +1,20 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Ghostie.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://ghostWight.png" type="Texture" id=3]
+[ext_resource path="res://ghostRed.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [node name="Ghostie" type="Area2D" groups=[
 "enemy",
@@ -12,9 +22,18 @@ extents = Vector2( 32, 32 )
 position = Vector2( 640, 352 )
 script = ExtResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="GhostSprite" type="Sprite" parent="."]
+visible = false
 modulate = Color( 0.956863, 0.94902, 0.94902, 1 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="DamagedAnimation" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+
+[node name="DamageAnimationTimer" type="Timer" parent="."]
+wait_time = 1.04
+one_shot = true
+[connection signal="timeout" from="DamageAnimationTimer" to="." method="_on_DamageAnimation_timeout"]
