@@ -97,6 +97,8 @@ editor/display_folded = true
 [node name="Shield" parent="Equipped" instance=ExtResource( 9 )]
 
 [node name="DeathTimer" type="Timer" parent="."]
+
+[node name="Tween" type="Tween" parent="."]
 [connection signal="timeout" from="ItemSwapTimer" to="." method="_on_ItemSwapTimer_timeout"]
 [connection signal="timeout" from="SwordAttackTimer" to="." method="_on_SwordAttackTimer_timeout"]
 [connection signal="timeout" from="ShieldAttackTimer" to="." method="_on_ShieldAttackTimer_timeout"]

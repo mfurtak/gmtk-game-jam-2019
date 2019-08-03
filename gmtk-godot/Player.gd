@@ -80,7 +80,6 @@ func _process(delta):
 	moving_direction.x = 0
 	moving_direction.y = 0
 	is_action_pressed = false
-	
 	if Input.is_action_pressed("ui_up"):
 		moving_direction.y += -1
 	if Input.is_action_pressed("ui_down"):
@@ -235,6 +234,10 @@ func _get_rotation():
 func on_death():
 	is_dead = true
 	$WilhelmScream.play()
+	
+	#$Tween.interpolate_property(self, "position", position, 
+	#	Vector2(position.x, position.y + 1000), 1,
+	#	Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$DeathTimer.start()
 	
 func _on_DeathTimer_timeout():
