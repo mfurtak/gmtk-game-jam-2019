@@ -1,23 +1,19 @@
 extends CanvasLayer
 
-var player = null
-var active_item_label_node = null
-var second_item_label_node = null
-var third_item_label_node = null
-var fourth_item_label_node = null
-var item_stack_node = null
+onready var player = get_node("/root/Main/Player")
+
+# Item Labels
+onready var active_item_label = get_node("ItemCards/ActiveItem/Label")
+onready var second_item_label = get_node("ItemCards/SecondItem/Label")
+onready var third_item_label = get_node("ItemCards/ThirdItem/Label")
+onready var fourth_item_label = get_node("ItemCards/FourthItem/Label")
+
+onready var item_stack_node = get_node("ItemCards/ItemStack")
+
+var item_labels = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	player = get_parent().get_node("Player")
-	
-	# Item Labels
-	active_item_label_node = get_node("ItemCards/ActiveItem/Label")
-	second_item_label_node = get_node("ItemCards/FirstItem/Label")
-	third_item_label_node = get_node("ItemCards/SecondItem/Label")
-	fourth_item_label_node = get_node("ItemCards/ThirdItem/Label")
-	item_stack_node = get_node("ItemCards/ItemStack")
-	
 	# Item Timer Progress Bar
 	$CurrentItemProgress.min_value = 0
 	$CurrentItemProgress.max_value = 1
@@ -26,6 +22,13 @@ func _ready():
 	# Health
 	$HealthProgress.min_value = player.MIN_HEALTH
 	$HealthProgress.max_value = player.MAX_HEALTH
+	
+	item_labels = [
+		active_item_label,
+		second_item_label,
+		third_item_label,
+		fourth_item_label
+	]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -44,21 +47,26 @@ func _set_cards():
 	var items_queue = player.items_queue
 	
 	for i in range(4):
-		match i:
-			0:
-				if items_queue.size() > i:
-					active_item_label_node.set('text', str(player.get_item_name(items_queue[i])))
-			1:
-				if items_queue.size() > i:
-					second_item_label_node.set('text', str(player.get_item_name(items_queue[i])))
-			2:
-				if items_queue.size() > i:
-					third_item_label_node.set('text', str(player.get_item_name(items_queue[i])))
-			3:
-				if items_queue.size() > i:
-					fourth_item_label_node.set('text', str(player.get_item_name(items_queue[i])))
-			_:
-				pass
+		if items_queue.size() > i:
+			item_labels[i].get_parent().show()
+			item_labels[i].text = player.get_item_name(items_queue[i])
+		else:
+			item_labels[i].get_parent().hide()
+#		match i:
+#			0:
+#				if items_queue.size() > i:
+#					active_item_label_node.set('text', str(player.get_item_name(items_queue[i])))
+#			1:
+#				if items_queue.size() > i:
+#					second_item_label_node.set('text', str(player.get_item_name(items_queue[i])))
+#			2:
+#				if items_queue.size() > i:
+#					third_item_label_node.set('text', str(player.get_item_name(items_queue[i])))
+#			3:
+#				if items_queue.size() > i:
+#					fourth_item_label_node.set('text', str(player.get_item_name(items_queue[i])))
+#			_:
+#				pass
 
 	if items_queue.size() >= 5:
 		item_stack_node.show()

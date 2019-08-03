@@ -20,10 +20,11 @@ var is_pink = false
 var is_attacking = false
 
 var items_queue = [Items.SWORD, Items.SHIELD]
-var current_item = ''
+var current_item = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$AnimatedSprite.play("default")
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -100,20 +101,21 @@ func get_item_name(item_enum):
 			pass
 		
 func _on_ItemSwapTimer_timeout():
-	_set_color()
 	current_item = items_queue.pop_front()
 	items_queue.push_back(current_item)
+	_set_color()
 	
 func _set_color():
 	# TODO(ANIT) something is funky with the color setting, 
 	# though it looks like current item is correct as far as the
 	# HUD is concerned
+	print("current item: ", current_item)
 	match current_item:
 		Items.SWORD:
-			$AnimatedSprite.play("pink")
+			$AnimatedSprite.play("default")
 		Items.BOW:
 			$AnimatedSprite.play("green")
 		Items.SHIELD:
-			$AnimatedSprite.play("default")
+			$AnimatedSprite.play("pink")
 		_:
 			pass
