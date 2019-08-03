@@ -234,7 +234,10 @@ func _get_rotation():
 		
 func on_death():
 	is_dead = true
-	$wilhelmScream.play()
+	$WilhelmScream.play()
+	$DeathTimer.start()
+	
+func _on_DeathTimer_timeout():
 	emit_signal("game_over")
 
 func _on_SwordAttackTimer_timeout():
