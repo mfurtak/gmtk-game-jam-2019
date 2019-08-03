@@ -2,15 +2,14 @@ extends KinematicBody2D
 
 enum Items {SWORD, BOW, SHIELD}
 
-
 var moving_direction = Vector2()
 var facing_direction = Vector2(1,0)
 var velocity = Vector2()
 var is_action_pressed = false
 
-const SPEED = 30
-const TOP_SPEED = 50
-const DECELERATION = .7
+const SPEED = 10
+const TOP_SPEED = 200
+const DECELERATION = .2
 const ARROW_OFFSET = 48
 
 const BASE_ITEMS_PERIOD = 3 # seconds
@@ -39,27 +38,29 @@ var shield = null
 func _ready():
 	sprites = [$sword, $shield, $bow]
 	_render()
-	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	var normal_moving_direction = moving_direction.normalized()
 	
-	velocity.x += max(min(normal_moving_direction.x * SPEED, TOP_SPEED), -TOP_SPEED)
-	velocity.y +=  max(min(normal_moving_direction.y * SPEED, TOP_SPEED), -TOP_SPEED)
+	var delta_velocity_x = normal_moving_direction.x * SPEED
+	var delta_velocity_y = normal_moving_direction.y * SPEED
+	
+	velocity.x = clamp(velocity.x + delta_velocity_x, -TOP_SPEED, TOP_SPEED)
+	velocity.y = clamp(velocity.y + delta_velocity_y, -TOP_SPEED, TOP_SPEED)
 
 	if normal_moving_direction.x == 0:
 		velocity.x = lerp(velocity.x, 0, DECELERATION)
 	if normal_moving_direction.y == 0:
 		velocity.y = lerp(velocity.y, 0, DECELERATION)
 	
-	var collision = move_and_collide(velocity * delta)
-	if collision:
-		# Do stuff
-		if is_attacking:
-			if collision.collider.has_method("on_attacked"):
-				collision.collider.on_attacked()
-	
+	velocity = move_and_slide(velocity)
+#	
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		print("Player collided with: ", collision.collider.name)
+		if is_attacking and collision.collider.has_method("on_attacked"):
+			collision.collider.on_attacked()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -111,7 +112,6 @@ func on_player_attacked():
 			pass
 		_:
 			print("spillover in get_item_name")
-			pass
 			
 	
 func _on_attack():
@@ -139,7 +139,6 @@ func _on_attack():
 			
 		_:
 			print("spillover in get_item_name")
-			pass
 			
 			
 func pickup(item_enum):
@@ -155,7 +154,6 @@ func get_item_name(item_enum):
 			return 'shield'
 		_:
 			print("spillover in get_item_name")
-			pass
 
 func _on_ItemSwapTimer_timeout():
 	# Rotate the item
