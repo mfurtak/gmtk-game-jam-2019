@@ -43,20 +43,20 @@ func _process(delta):
 func _set_cards():
 	var items_queue = player.items_queue
 	
-	for item_index in range(4):
-		match item_index:
+	for i in range(4):
+		match i:
 			0:
-				if items_queue.size() > item_index:
-					active_item_label_node.set('text', str(items_queue[item_index]))
+				if items_queue.size() > i:
+					active_item_label_node.set('text', str(player.get_item_name(items_queue[i])))
 			1:
-				if items_queue.size() > item_index:
-					second_item_label_node.set('text', str(items_queue[item_index]))
+				if items_queue.size() > i:
+					second_item_label_node.set('text', str(player.get_item_name(items_queue[i])))
 			2:
-				if items_queue.size() > item_index:
-					third_item_label_node.set('text', str(items_queue[item_index])) 
+				if items_queue.size() > i:
+					third_item_label_node.set('text', str(player.get_item_name(items_queue[i])))
 			3:
-				if items_queue.size() > item_index:
-					fourth_item_label_node.set('text', str(items_queue[item_index]))
+				if items_queue.size() > i:
+					fourth_item_label_node.set('text', str(player.get_item_name(items_queue[i])))
 			_:
 				pass
 

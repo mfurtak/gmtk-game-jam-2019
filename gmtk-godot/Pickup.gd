@@ -11,11 +11,11 @@ func _physics_process(delta):
 			var player = body
 			match self.name:
 				'BowPickup':
-					player.get_item(player.Items.BOW)
+					player.pickup(player.Items.BOW)
 				'SwordPickup':
-					player.get_item(player.Items.SWORD)
+					player.pickup(player.Items.SWORD)
 				'ShieldPickup':
-					player.get_item(player.Items.SHIELD)
+					player.pickup(player.Items.SHIELD)
 				_:
 					pass
 

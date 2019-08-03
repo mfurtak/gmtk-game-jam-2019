@@ -20,7 +20,7 @@ var is_pink = false
 var is_attacking = false
 
 var items_queue = [Items.SWORD, Items.SHIELD]
-var current_item = Items.SWORD
+var current_item = ''
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -57,7 +57,7 @@ func _physics_process(delta):
 #		$AttackSprite.visible = false
 
 func on_player_attacked():
-	current_health = max(MIN_HEALTH, current_health - 0.01)
+	current_health = max(MIN_HEALTH, current_health - 1)
 	print("OUCH")
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -85,13 +85,29 @@ func _process(delta):
 	
 	$ItemSwapTimer.wait_time = item_duration
 
-func get_item(item):
-	print("GOT ITEM: ", item)
-	
+func pickup(item_enum):
+	items_queue.push_back(item_enum)
+
+func get_item_name(item_enum):
+	match item_enum:
+		Items.SWORD:
+			return 'sword'
+		Items.BOW:
+			return 'bow'
+		Items.SHIELD:
+			return 'shield'
+		_:
+			pass
+		
 func _on_ItemSwapTimer_timeout():
+	_set_color()
 	current_item = items_queue.pop_front()
 	items_queue.push_back(current_item)
 	
+func _set_color():
+	# TODO(ANIT) something is funky with the color setting, 
+	# though it looks like current item is correct as far as the
+	# HUD is concerned
 	match current_item:
 		Items.SWORD:
 			$AnimatedSprite.play("pink")
