@@ -1,11 +1,14 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.403922, 0.054902, 0.054902, 1 )
 
 [node name="HUD" type="CanvasLayer"]
 editor/display_folded = true
 
 [node name="HudBar" type="ColorRect" parent="."]
 margin_left = 1.0
-margin_top = 627.0
+margin_top = 597.0
 margin_right = 1025.0
 margin_bottom = 703.0
 color = Color( 0.00784314, 0.121569, 0.0392157, 1 )
@@ -30,6 +33,7 @@ margin_top = -0.288025
 margin_right = -0.056015
 margin_bottom = 0.335938
 rect_clip_content = true
+custom_styles/fg = SubResource( 1 )
 percent_visible = false
 
 [node name="ItemCards" type="Node" parent="."]
