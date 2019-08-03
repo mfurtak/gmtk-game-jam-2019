@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Blob.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://blob.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 32 )
+[sub_resource type="CircleShape2D" id=1]
+radius = 32.0
 
 [node name="Blob" type="KinematicBody2D"]
 position = Vector2( 640, 352 )
@@ -14,7 +14,7 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 0.635294, 0.113725, 0.113725, 1 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
