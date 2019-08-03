@@ -21,7 +21,6 @@ func _ready():
 
 func is_active_caster(caster):
 	if caster.is_colliding() and caster.get_collider() ==  null:
-		print("BARF!")
 		return false
 	else:
 		return caster.is_colliding() and caster.get_collider().name == "Player" and !caster.get_collider().is_pink
@@ -47,13 +46,14 @@ func _process(delta):
 			collision.collider.on_player_attacked()
 
 func on_attacked():
-	self.queue_free()
+	pass # self.queue_free()
 
 func on_shot(damage):
 	print("was shot!")
 	
-func on_shield_hit():
-	print("GOT SHUV'D")
+func on_shield_attacked(damage):
+	velocity.x = -velocity.x * damage
+	velocity.y = -velocity.y * damage
 
 func _physics_process(delta):
 	#print(player.global_position)
