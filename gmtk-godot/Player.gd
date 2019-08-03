@@ -85,6 +85,8 @@ func _process(delta):
 	
 	$ItemSwapTimer.wait_time = item_duration
 
+func get_item(item):
+	print("GOT ITEM: ", item)
 	
 func _on_ItemSwapTimer_timeout():
 	current_item = items_queue.pop_front()

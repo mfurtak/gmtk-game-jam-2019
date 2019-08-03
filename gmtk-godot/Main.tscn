@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Exit.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://simple_tileset.tres" type="TileSet" id=5]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=6]
 [ext_resource path="res://HUD.gd" type="Script" id=7]
+[ext_resource path="res://Pickup.tscn" type="PackedScene" id=8]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -18,7 +19,6 @@ position = Vector2( 432, 80 )
 position = Vector2( 96, 544 )
 
 [node name="Enemies" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="Thwomp" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( 288, 256 )
@@ -43,3 +43,19 @@ __meta__ = {
 "ItemSwap",
 ] instance=ExtResource( 6 )]
 script = ExtResource( 7 )
+
+[node name="Pickups" type="Node" parent="."]
+
+[node name="ShieldPickup" parent="Pickups" instance=ExtResource( 8 )]
+visible = false
+position = Vector2( 129.062, 383.974 )
+
+[node name="SwordPickup" parent="Pickups" instance=ExtResource( 8 )]
+visible = false
+position = Vector2( 64.2627, 66.4053 )
+
+[node name="BowPickup" parent="Pickups" instance=ExtResource( 8 )]
+position = Vector2( 126.384, 303.109 )
+
+[node name="Pickup" parent="Pickups" instance=ExtResource( 8 )]
+visible = false
