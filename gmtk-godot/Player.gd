@@ -8,8 +8,8 @@ var velocity = Vector2()
 var is_action_pressed = false
 
 const SPEED = 10
-const TOP_SPEED = 20
-const DECELERATION = .7
+const TOP_SPEED = 200
+const DECELERATION = .2
 const ARROW_OFFSET = 48
 
 const BASE_ITEMS_PERIOD = 3 # seconds
@@ -35,14 +35,16 @@ onready var arrow_scene = preload("res://Arrow.tscn")
 func _ready():
 	sprites = [$sword, $shield, $bow]
 	_render()
-	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	var normal_moving_direction = moving_direction.normalized()
 	
-	velocity.x += max(min(normal_moving_direction.x * SPEED, TOP_SPEED), -TOP_SPEED)
-	velocity.y +=  max(min(normal_moving_direction.y * SPEED, TOP_SPEED), -TOP_SPEED)
+	var delta_velocity_x = normal_moving_direction.x * SPEED
+	var delta_velocity_y = normal_moving_direction.y * SPEED
+	
+	velocity.x = clamp(velocity.x + delta_velocity_x, -TOP_SPEED, TOP_SPEED)
+	velocity.y = clamp(velocity.y + delta_velocity_y, -TOP_SPEED, TOP_SPEED)
 
 	if normal_moving_direction.x == 0:
 		velocity.x = lerp(velocity.x, 0, DECELERATION)
@@ -50,8 +52,7 @@ func _physics_process(delta):
 		velocity.y = lerp(velocity.y, 0, DECELERATION)
 	
 	velocity = move_and_slide(velocity)
-	# print("player velocity: ", velocity)
-	
+#	
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		print("Player collided with: ", collision.collider.name)
@@ -105,7 +106,6 @@ func on_player_attacked():
 			pass
 		_:
 			print("spillover in get_item_name")
-			pass
 			
 	
 func _on_attack():
@@ -129,7 +129,6 @@ func _on_attack():
 			print("Shield ATTACK!!")
 		_:
 			print("spillover in get_item_name")
-			pass
 			
 			
 func pickup(item_enum):
@@ -145,7 +144,6 @@ func get_item_name(item_enum):
 			return 'shield'
 		_:
 			print("spillover in get_item_name")
-			pass
 
 func _on_ItemSwapTimer_timeout():
 	# Rotate the item
