@@ -20,7 +20,11 @@ func _ready():
 	pass # Replace with function body.
 
 func is_active_caster(caster):
-	return caster.is_colliding() and caster.get_collider().name == "Player" and !caster.get_collider().is_pink
+	if caster.is_colliding() and caster.get_collider() ==  null:
+		print("BARF!")
+		return false
+	else:
+		return caster.is_colliding() and caster.get_collider().name == "Player" and !caster.get_collider().is_pink
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -45,6 +49,8 @@ func _process(delta):
 func on_attacked():
 	self.queue_free()
 
+func on_shot():
+	print("was shot!")
 
 func _physics_process(delta):
 	#print(player.global_position)
