@@ -12,6 +12,9 @@ var moving_direction = Vector2()
 var facing_direction = Vector2(1,0)
 var velocity = Vector2()
 var is_action_pressed = false
+var is_dead = false
+
+signal game_over
 
 const SPEED = 10
 const TOP_SPEED = 200
@@ -32,6 +35,7 @@ var is_shield_attacking = false
 var bow_cool = true
 
 var items_queue = [Items.BOW, Items.SHIELD, Items.SWORD]
+
 var current_item = items_queue[-1]
 var sprites = null
 var current_sprite = null
@@ -77,7 +81,6 @@ func _process(delta):
 	moving_direction.x = 0
 	moving_direction.y = 0
 	is_action_pressed = false
-	
 	if Input.is_action_pressed("ui_up"):
 		moving_direction.y += -1
 	if Input.is_action_pressed("ui_down"):
@@ -118,7 +121,10 @@ func on_player_attacked():
 		_:
 			print("spillover in get_item_name")
 			
-	
+	#TODO send enemy to death scene
+	if (current_health <= 0 && !is_dead):
+		on_death();
+		
 func _on_attack():
 	match current_item:
 		Items.SWORD:
@@ -249,6 +255,18 @@ func _get_rotation():
 		return PI / 2.0
 	else:
 		return current_rotation
+		
+func on_death():
+	is_dead = true
+	$WilhelmScream.play()
+	
+	#$Tween.interpolate_property(self, "position", position, 
+	#	Vector2(position.x, position.y + 1000), 1,
+	#	Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$DeathTimer.start()
+	
+func _on_DeathTimer_timeout():
+	emit_signal("game_over")
 
 func _on_SwordAttackTimer_timeout():
 	is_sword_attacking = false
