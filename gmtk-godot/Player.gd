@@ -22,6 +22,7 @@ var current_health = 100
 
 var is_pink = false
 var is_attacking = false
+var bow_cool = true
 
 var items_queue = [Items.BOW, Items.SHIELD, Items.SWORD]
 var current_item = items_queue[-1]
@@ -110,16 +111,20 @@ func on_player_attacked():
 func _on_attack():
 	match current_item:
 		Items.SWORD:
-			print("SWORD ATTACK!!")
-			is_attacking = true
-			$SwordAttackTimer.start()
+			if not is_attacking:
+				print("SWORD ATTACK!!")
+				is_attacking = true
+				$SwordAttackTimer.start()
 		Items.BOW:
-			var arrow = arrow_scene.instance() 
-			arrow.set_name("arrow") 
-			get_parent().add_child(arrow)
-			arrow.position = position + (facing_direction*ARROW_OFFSET)
-			arrow.direction = facing_direction
-			print("BOW ATTACK!!")
+			if bow_cool:
+				bow_cool = false
+				$BowCooldown.start()
+				var arrow = arrow_scene.instance() 
+				arrow.set_name("arrow") 
+				get_parent().add_child(arrow)
+				arrow.position = position + (facing_direction*ARROW_OFFSET)
+				arrow.direction = facing_direction
+				print("BOW ATTACK!!")
 		Items.SHIELD:
 			print("Shield ATTACK!!")
 		_:
@@ -199,3 +204,7 @@ func _get_rotation():
 
 func _on_SwordAttackTimer_timeout():
 	is_attacking = false
+
+
+func _on_BowCooldown_timeout():
+	bow_cool = true

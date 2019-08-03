@@ -72,5 +72,9 @@ animation = "idle"
 [node name="SwordAttackTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="BowCooldown" type="Timer" parent="."]
+wait_time = 0.5
 [connection signal="timeout" from="ItemSwapTimer" to="." method="_on_ItemSwapTimer_timeout"]
 [connection signal="timeout" from="SwordAttackTimer" to="." method="_on_SwordAttackTimer_timeout"]
+[connection signal="timeout" from="BowCooldown" to="." method="_on_BowCooldown_timeout"]
