@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+enum Items {SWORD, BOW, SHIELD}
+
 var direction = Vector2()
 var velocity = Vector2()
 var is_action_pressed = false
@@ -7,9 +9,14 @@ var is_action_pressed = false
 const SPEED = 30
 const TOP_SPEED = 50
 const DECELERATION = .7
+const BASE_ITEMS_PERIOD = 3 # seconds
+const PER_ITEM_PERIOD = 1
 
 var is_pink = false
 var is_attacking = false
+
+var items_queue = [Items.SWORD, Items.SHIELD]
+var current_item = Items.SWORD
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -40,10 +47,10 @@ func _physics_process(delta):
 	if is_action_pressed and not is_pink:
 		is_attacking = true
 		
-	if is_attacking:
-		$AttackSprite.visible = true
-	elif not is_attacking:
-		$AttackSprite.visible = false
+#	if is_attacking:
+#		$AttackSprite.visible = true
+#	elif not is_attacking:
+#		$AttackSprite.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -62,11 +69,21 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_select"):
 		is_action_pressed = true
 	
+	var total_item_period = float(BASE_ITEMS_PERIOD + (PER_ITEM_PERIOD * items_queue.size()))
+	var item_duration = total_item_period / float(items_queue.size())
 	
+	$ItemSwapTimer.wait_time = item_duration
 
 func _on_ItemSwapTimer_timeout():
-	is_pink = !is_pink
-	if is_pink:
-		$AnimatedSprite.play("pink")
-	else:
-		$AnimatedSprite.play("default")
+	current_item = items_queue.pop_front()
+	items_queue.push_back(current_item)
+	
+	match current_item:
+		Items.SWORD:
+			$AnimatedSprite.play("pink")
+		Items.BOW:
+			$AnimatedSprite.play("green")
+		Items.SHIELD:
+			$AnimatedSprite.play("default")
+		_:
+			pass

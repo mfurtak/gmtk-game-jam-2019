@@ -19,6 +19,10 @@ config/name="gmtk-godot"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/height=704
+
 [rendering]
 
 quality/driver/driver_name="GLES2"
