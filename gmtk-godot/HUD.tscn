@@ -70,6 +70,7 @@ margin_right = -136.0
 margin_bottom = -24.0
 
 [node name="ItemStack" type="ColorRect" parent="ItemCards"]
+editor/display_folded = true
 margin_left = 920.0
 margin_top = 608.0
 margin_right = 992.0

@@ -2,9 +2,9 @@ extends KinematicBody2D
 
 enum Items {SWORD, BOW, SHIELD}
 
-var sword_resource =  preload("res://player_sword.png")
-var bow_resource =  preload("res://player_bow.png")
-var shield_resource =  preload("res://player_shield.png")
+var sword_resource =  preload("res://sprites/sword.png")
+var bow_resource =  preload("res://sprites/bow.png")
+var shield_resource =  preload("res://sprites/shield.png")
 
 var items_to_images = {}
 
