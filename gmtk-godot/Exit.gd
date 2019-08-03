@@ -1,26 +1,15 @@
-#extends Area2D
 extends Area2D
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 
+signal exited
+
+export(String, FILE, "*.tscn") var next_scene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	connect('body_entered', self, '_on_entered')
 
 
-func _physics_process(delta):
-	var bodies = get_overlapping_bodies()
-	for body in bodies:
-		if body.name == "Player":
-			get_tree().change_scene("Main.tscn")
-			
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	
-	pass
-
-func on_exit():
-	print("Time to go!")
-	pass
+func _on_entered(body):
+	if body.name == "Player":
+		print("Exiting into ", next_scene)
+		emit_signal("exited", next_scene)

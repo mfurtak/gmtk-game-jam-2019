@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Exit.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Thwomp.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Ghostie.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Pickup.tscn" type="PackedScene" id=4]
+[ext_resource path="res://PlayerSpawn.tscn" type="PackedScene" id=5]
+[ext_resource path="res://simple_tileset.tres" type="TileSet" id=6]
+
+[node name="Level2" type="Node2D"]
+
+[node name="Exit" parent="." instance=ExtResource( 1 )]
+position = Vector2( 129, 480 )
+next_scene = "res://Level1.tscn"
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Thwomp" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 352, 256 )
+
+[node name="Thwomp1" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 704, 192 )
+
+[node name="Thwomp2" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 736, 384 )
+
+[node name="Ghostie" parent="Enemies" instance=ExtResource( 3 )]
+
+[node name="Pickups" type="Node" parent="."]
+editor/display_folded = true
+
+[node name="ShieldPickup" parent="Pickups" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 129.062, 383.974 )
+
+[node name="SwordPickup" parent="Pickups" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 64.2627, 66.4053 )
+
+[node name="BowPickup" parent="Pickups" instance=ExtResource( 4 )]
+position = Vector2( 126.384, 303.109 )
+
+[node name="Pickup" parent="Pickups" instance=ExtResource( 4 )]
+visible = false
+
+[node name="PlayerSpawn" parent="." instance=ExtResource( 5 )]
+position = Vector2( 512, 512 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 6 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 65536, 0, 0, 65539, 0, 0, 65551, 0, 0, 131072, 0, 0, 131075, 0, 0, 131087, 0, 0, 196608, 0, 0, 196611, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 196623, 0, 0, 262144, 0, 0, 262147, 0, 0, 262159, 0, 0, 327680, 0, 0, 327683, 0, 0, 327695, 0, 0, 393216, 0, 0, 393221, 0, 0, 393222, 0, 0, 393223, 0, 0, 393231, 0, 0, 458752, 0, 0, 458757, 0, 0, 458767, 0, 0, 524288, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0, 589824, 0, 0, 589839, 0, 0, 655360, 0, 0, 655361, 0, 0, 655362, 0, 0, 655363, 0, 0, 655364, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 655368, 0, 0, 655369, 0, 0, 655370, 0, 0, 655371, 0, 0, 655372, 0, 0, 655373, 0, 0, 655374, 0, 0, 655375, 0, 0 )
