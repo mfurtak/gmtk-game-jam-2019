@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://HUD.gd" type="Script" id=1]
-[ext_resource path="res://ActiveItem.gd" type="Script" id=2]
+[ext_resource path="res://HudItem.tscn" type="PackedScene" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.403922, 0.054902, 0.054902, 1 )
@@ -41,69 +41,40 @@ percent_visible = false
 
 [node name="ItemCards" type="Node" parent="."]
 
-[node name="ActiveItem" type="ColorRect" parent="ItemCards"]
-anchor_right = 0.098
-anchor_bottom = 0.136
-margin_left = 475.0
-margin_top = 602.0
-margin_right = 470.648
-margin_bottom = 586.256
-color = Color( 0.831373, 0.737255, 0.113725, 1 )
-script = ExtResource( 2 )
+[node name="ActiveItem" parent="ItemCards" instance=ExtResource( 2 )]
+margin_left = 480.0
+margin_top = 608.0
+margin_right = -472.0
+margin_bottom = -24.0
+active_item = true
 
-[node name="Label" type="RichTextLabel" parent="ItemCards/ActiveItem"]
-margin_left = 2.0
-margin_right = 93.0
-margin_bottom = 78.0
-custom_colors/default_color = Color( 0, 0, 0, 1 )
+[node name="SecondItem" parent="ItemCards" instance=ExtResource( 2 )]
+margin_left = 632.0
+margin_top = 608.0
+margin_right = -328.0
+margin_bottom = -32.0
 
-[node name="SecondItem" type="ColorRect" parent="ItemCards"]
-margin_left = 626.0
-margin_top = 612.0
-margin_right = 698.0
-margin_bottom = 684.0
-color = Color( 0.592157, 0.509804, 0.282353, 1 )
+[node name="ThirdItem" parent="ItemCards" instance=ExtResource( 2 )]
+margin_left = 728.0
+margin_top = 608.0
+margin_right = -232.0
+margin_bottom = -32.0
 
-[node name="Label" type="RichTextLabel" parent="ItemCards/SecondItem"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 1.0
-margin_bottom = 1.0
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-
-[node name="ThirdItem" type="ColorRect" parent="ItemCards"]
-margin_left = 721.0
-margin_top = 613.0
-margin_right = 793.0
-margin_bottom = 685.0
-color = Color( 0.592157, 0.509804, 0.282353, 1 )
-
-[node name="Label" type="RichTextLabel" parent="ItemCards/ThirdItem"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -1.0
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-
-[node name="FourthItem" type="ColorRect" parent="ItemCards"]
-margin_left = 814.0
-margin_top = 614.0
-margin_right = 886.0
-margin_bottom = 686.0
-color = Color( 0.592157, 0.509804, 0.282353, 1 )
-
-[node name="Label" type="RichTextLabel" parent="ItemCards/FourthItem"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 1.0
-margin_bottom = 1.0
-custom_colors/default_color = Color( 0, 0, 0, 1 )
+[node name="FourthItem" parent="ItemCards" instance=ExtResource( 2 )]
+margin_left = 824.0
+margin_top = 608.0
+margin_right = -136.0
+margin_bottom = -32.0
 
 [node name="ItemStack" type="ColorRect" parent="ItemCards"]
-margin_left = 904.0
-margin_top = 614.0
-margin_right = 976.0
-margin_bottom = 686.0
+margin_left = 920.0
+margin_top = 608.0
+margin_right = 992.0
+margin_bottom = 680.0
 color = Color( 0.592157, 0.509804, 0.282353, 1 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="ColorRect" type="ColorRect" parent="ItemCards/ItemStack"]
 margin_left = 18.0

@@ -9,6 +9,7 @@ var is_action_pressed = false
 const SPEED = 30
 const TOP_SPEED = 50
 const DECELERATION = .7
+
 const BASE_ITEMS_PERIOD = 3 # seconds
 const PER_ITEM_PERIOD = 1
 

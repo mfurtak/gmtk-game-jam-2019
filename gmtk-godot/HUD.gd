@@ -3,14 +3,14 @@ extends CanvasLayer
 onready var player = get_node("/root/Main/Player")
 
 # Item Labels
-onready var active_item_label = get_node("ItemCards/ActiveItem/Label")
-onready var second_item_label = get_node("ItemCards/SecondItem/Label")
-onready var third_item_label = get_node("ItemCards/ThirdItem/Label")
-onready var fourth_item_label = get_node("ItemCards/FourthItem/Label")
+onready var active_item = get_node("ItemCards/ActiveItem")
+onready var second_item = get_node("ItemCards/SecondItem")
+onready var third_item = get_node("ItemCards/ThirdItem")
+onready var fourth_item = get_node("ItemCards/FourthItem")
 
 onready var item_stack_node = get_node("ItemCards/ItemStack")
 
-var item_labels = []
+var hud_items = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,11 +23,11 @@ func _ready():
 	$HealthProgress.min_value = player.MIN_HEALTH
 	$HealthProgress.max_value = player.MAX_HEALTH
 	
-	item_labels = [
-		active_item_label,
-		second_item_label,
-		third_item_label,
-		fourth_item_label
+	hud_items = [
+		active_item,
+		second_item,
+		third_item,
+		fourth_item
 	]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -48,25 +48,10 @@ func _set_cards():
 	
 	for i in range(4):
 		if items_queue.size() > i:
-			item_labels[i].get_parent().show()
-			item_labels[i].text = player.get_item_name(items_queue[i])
+			hud_items[i].show()
+			hud_items[i].set_text(player.get_item_name(items_queue[i]))
 		else:
-			item_labels[i].get_parent().hide()
-#		match i:
-#			0:
-#				if items_queue.size() > i:
-#					active_item_label_node.set('text', str(player.get_item_name(items_queue[i])))
-#			1:
-#				if items_queue.size() > i:
-#					second_item_label_node.set('text', str(player.get_item_name(items_queue[i])))
-#			2:
-#				if items_queue.size() > i:
-#					third_item_label_node.set('text', str(player.get_item_name(items_queue[i])))
-#			3:
-#				if items_queue.size() > i:
-#					fourth_item_label_node.set('text', str(player.get_item_name(items_queue[i])))
-#			_:
-#				pass
+			hud_items[i].hide()
 
 	if items_queue.size() >= 5:
 		item_stack_node.show()
