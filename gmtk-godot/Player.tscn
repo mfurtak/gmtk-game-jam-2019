@@ -36,4 +36,12 @@ autostart = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "pink"
+
+[node name="AttackSprite" type="Sprite" parent="."]
+visible = false
+modulate = Color( 1, 0, 0, 1 )
+self_modulate = Color( 1, 0, 0, 1 )
+position = Vector2( 0, -1 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 3 )
 [connection signal="timeout" from="ItemSwapTimer" to="." method="_on_ItemSwapTimer_timeout"]

@@ -2,12 +2,14 @@ extends KinematicBody2D
 
 var direction = Vector2()
 var velocity = Vector2()
+var is_action_pressed = false
 
 const SPEED = 30
 const TOP_SPEED = 50
 const DECELERATION = .7
 
 var is_pink = false
+var is_attacking = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,12 +30,26 @@ func _physics_process(delta):
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		# Do stuff
-    	print("PLAYER SLAP ", collision.collider.name)
+		if is_attacking:
+			if collision.collider.has_method("on_attacked"):
+				collision.collider.on_attacked()
+	
+	if is_pink:
+		is_attacking = false
+		
+	if is_action_pressed and not is_pink:
+		is_attacking = true
+		
+	if is_attacking:
+		$AttackSprite.visible = true
+	elif not is_attacking:
+		$AttackSprite.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	direction.x = 0
 	direction.y = 0
+	is_action_pressed = false
 	
 	if Input.is_action_pressed("ui_up"):
 		direction.y += -1
@@ -43,6 +59,9 @@ func _process(delta):
 		direction.x += -1
 	if Input.is_action_pressed("ui_right"):
 		direction.x += 1
+	if Input.is_action_just_pressed("ui_select"):
+		is_action_pressed = true
+	
 	
 
 func _on_ItemSwapTimer_timeout():

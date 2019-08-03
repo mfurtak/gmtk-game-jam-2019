@@ -38,10 +38,12 @@ func _process(delta):
 		velocity = lerp(velocity, Vector2(), DECELERATION)
 
 	var collision = move_and_collide(velocity * delta)
-	if collision:
+	# if collision:
 		# Do stuff
-    	print("THWOMP BONK ", collision.collider.name)
+		#print("THWOMP BONK ", collision.collider.name)
 
+func on_attacked():
+	print("THWOMP DED!")
 
 
 func _physics_process(delta):
