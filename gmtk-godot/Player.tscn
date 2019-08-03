@@ -81,12 +81,15 @@ animation = "idle"
 
 [node name="SwordAttackTimer" type="Timer" parent="."]
 wait_time = 0.3
+one_shot = true
 
 [node name="ShieldAttackTimer" type="Timer" parent="."]
 wait_time = 0.5
+one_shot = true
 
 [node name="BowCooldown" type="Timer" parent="."]
 wait_time = 0.5
+one_shot = true
 
 [node name="Equipped" type="Node2D" parent="."]
 
