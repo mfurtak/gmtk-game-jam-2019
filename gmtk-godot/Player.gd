@@ -195,7 +195,7 @@ func _render():
 	if moving:
 		animation_suffix = "_walk"
 	
-	var animation_prefix = "up_"
+	var animation_prefix = "up"
 	if facing_direction.y < 0:
 		animation_prefix = "up"
 	elif facing_direction.y > 0:
@@ -204,6 +204,8 @@ func _render():
 		animation_prefix = "left"
 	elif facing_direction.x > 0:
 		animation_prefix = "right"
+	else:
+		animation_prefix = "up"
 	
 	$GnomeSprite.play(animation_prefix + animation_suffix)
 			
@@ -218,9 +220,19 @@ func _do_sword_stuff():
 			$Equipped/Sword.set_sword_attacking(true)
 		else:
 			$Equipped/Sword.set_sword_attacking(false)
-			
-		$Equipped/Sword.rotation = current_rotation
-		$Equipped/Sword.position = $SwordAttackTimer.time_left * 10 * facing_direction + facing_direction*64
+		
+		var player_pos = $GnomeSprite.get_position_in_parent()
+		var sword_pos = $Equipped.get_position_in_parent()
+		
+		if facing_direction.y < 0 or facing_direction.x < 0:
+			move_child($Equipped, min(player_pos, sword_pos))
+			move_child($GnomeSprite, max(player_pos, sword_pos))
+		if facing_direction.y > 0 or facing_direction.x > 0:
+			move_child($Equipped, max(player_pos, sword_pos))
+			move_child($GnomeSprite, min(player_pos, sword_pos))
+		$Equipped/Sword.facing_direction = facing_direction
+		$Equipped/Sword.current_rotation = current_rotation
+		$Equipped/Sword.time_left = $SwordAttackTimer.time_left
 	else:
 		$Equipped/Sword.hide()
 		
@@ -245,18 +257,6 @@ func _do_bow_stuff():
 			$Equipped/Bow.position = $BowCooldown.time_left * 5 * facing_direction + facing_direction*16
 	else:
 		$Equipped/Bow.hide()
-		
-func _get_item_sprite():
-	match current_item:
-		Items.SWORD:
-			return $sword
-		Items.BOW:
-			return $bow
-		Items.SHIELD:
-			return $shield
-		_:
-			print("spillover in _set_color")
-			return $sword
 
 func _render_facing_direction():
 	var next_rotation = _get_rotation()
