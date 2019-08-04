@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Thwomp.gd" type="Script" id=1]
 [ext_resource path="res://sprites/thwomp.png" type="Texture" id=2]
@@ -6,8 +6,20 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.0
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 500, 32 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 500, 32 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 32, 500 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 32, 500 )
+
 [node name="Thwomp" type="KinematicBody2D"]
-position = Vector2( 640, 352 )
+position = Vector2( 448, 352 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -18,20 +30,45 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 1 )
 
 [node name="LeftRayCast" type="RayCast2D" parent="."]
-enabled = true
+visible = false
 cast_to = Vector2( -1000, 0 )
 
 [node name="RightRayCast" type="RayCast2D" parent="."]
-enabled = true
+visible = false
 cast_to = Vector2( 1000, 0 )
 
 [node name="UpRayCast" type="RayCast2D" parent="."]
-enabled = true
+visible = false
 cast_to = Vector2( 0, -1000 )
 
 [node name="DownRayCast" type="RayCast2D" parent="."]
-enabled = true
+visible = false
 cast_to = Vector2( 0, 1000 )
+
+[node name="LeftSight" type="Area2D" parent="."]
+
+[node name="LeftArea" type="CollisionShape2D" parent="LeftSight"]
+position = Vector2( -532, 0 )
+shape = SubResource( 2 )
+
+[node name="RightSight" type="Area2D" parent="."]
+
+[node name="RightArea" type="CollisionShape2D" parent="RightSight"]
+position = Vector2( 532, 0 )
+shape = SubResource( 3 )
+
+[node name="UpSight" type="Area2D" parent="."]
+
+[node name="UpArea" type="CollisionShape2D" parent="UpSight"]
+position = Vector2( 0, -532 )
+shape = SubResource( 4 )
+
+[node name="DownSight" type="Area2D" parent="."]
+
+[node name="DownArea" type="CollisionShape2D" parent="DownSight"]
+position = Vector2( 0, 532 )
+shape = SubResource( 5 )
