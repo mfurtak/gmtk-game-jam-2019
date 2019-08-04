@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://LevelOmega.gd" type="Script" id=1]
 [ext_resource path="res://Exit.tscn" type="PackedScene" id=2]
@@ -9,9 +9,6 @@
 [ext_resource path="res://PlayerSpawn.tscn" type="PackedScene" id=7]
 [ext_resource path="res://simple_tileset.tres" type="TileSet" id=8]
 [ext_resource path="res://EnemySpawn.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Ghostie.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Blob.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Thwomp.tscn" type="PackedScene" id=12]
 
 [node name="LevelOmega" type="Node2D"]
 script = ExtResource( 1 )
@@ -62,14 +59,3 @@ position = Vector2( 704, 192 )
 
 [node name="EnemySpawn5" parent="TileMap/EnemySpawnPoints" instance=ExtResource( 9 )]
 position = Vector2( 736, 384 )
-
-[node name="PotentialEnemies" type="Node" parent="TileMap"]
-
-[node name="Ghostie" parent="TileMap/PotentialEnemies" instance=ExtResource( 10 )]
-visible = false
-
-[node name="Blob" parent="TileMap/PotentialEnemies" instance=ExtResource( 11 )]
-visible = false
-
-[node name="Thwomp" parent="TileMap/PotentialEnemies" instance=ExtResource( 12 )]
-visible = false
