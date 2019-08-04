@@ -19,60 +19,8 @@ next_scene = "res://Level1.tscn"
 [node name="Enemies" type="Node" parent="."]
 
 [node name="GoombaHorizontal" parent="Enemies" instance=ExtResource( 2 )]
-editor/display_folded = true
 position = Vector2( 719.373, 80.3463 )
 script = ExtResource( 3 )
-
-[node name="GoombaWaitTimer" type="Timer" parent="Enemies/GoombaHorizontal"]
-wait_time = 0.4
-
-[node name="GoombaHorizontal6" parent="Enemies" instance=ExtResource( 2 )]
-editor/display_folded = true
-position = Vector2( 854.327, 276.886 )
-script = ExtResource( 3 )
-
-[node name="GoombaWaitTimer" type="Timer" parent="Enemies/GoombaHorizontal6"]
-wait_time = 0.4
-
-[node name="GoombaHorizontal7" parent="Enemies" instance=ExtResource( 2 )]
-editor/display_folded = true
-position = Vector2( 949.651, 175.671 )
-script = ExtResource( 3 )
-
-[node name="GoombaWaitTimer" type="Timer" parent="Enemies/GoombaHorizontal7"]
-wait_time = 0.4
-
-[node name="GoombaHorizontal5" parent="Enemies" instance=ExtResource( 2 )]
-editor/display_folded = true
-position = Vector2( 103.514, 221.726 )
-script = ExtResource( 3 )
-
-[node name="GoombaWaitTimer" type="Timer" parent="Enemies/GoombaHorizontal5"]
-wait_time = 0.4
-
-[node name="GoombaHorizontal2" parent="Enemies" instance=ExtResource( 2 )]
-editor/display_folded = true
-position = Vector2( 296.84, 351.324 )
-script = ExtResource( 3 )
-
-[node name="GoombaWaitTimer" type="Timer" parent="Enemies/GoombaHorizontal2"]
-wait_time = 0.4
-
-[node name="GoombaHorizontal3" parent="Enemies" instance=ExtResource( 2 )]
-editor/display_folded = true
-position = Vector2( 354.142, 428.976 )
-script = ExtResource( 3 )
-
-[node name="GoombaWaitTimer" type="Timer" parent="Enemies/GoombaHorizontal3"]
-wait_time = 0.4
-
-[node name="GoombaHorizontal4" parent="Enemies" instance=ExtResource( 2 )]
-editor/display_folded = true
-position = Vector2( 247.036, 505.021 )
-script = ExtResource( 3 )
-
-[node name="GoombaWaitTimer" type="Timer" parent="Enemies/GoombaHorizontal4"]
-wait_time = 0.4
 
 [node name="ShieldBash4" parent="Enemies" instance=ExtResource( 2 )]
 modulate = Color( 0.101961, 0.670588, 0.0823529, 1 )

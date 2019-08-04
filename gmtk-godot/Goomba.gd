@@ -20,7 +20,6 @@ func _process(delta):
 	
 	var collision = move_and_collide(velocity)	
 	if collision:
-		$GoombaWaitTimer.start()
 		velocity.x = 0
 		direction.x = -direction.x
 
