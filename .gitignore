@@ -12,3 +12,12 @@ export_presets.cfg
 
 # Mac files
 .DS_Store
+
+# Export files
+gmtk-godot/Archive.zip
+gmtk-godot/gmtk-godot.js
+gmtk-godot/gmtk-godot.pck
+gmtk-godot/gmtk-godot.png
+gmtk-godot/gmtk-godot.png.import
+gmtk-godot/gmtk-godot.wasm
+gmtk-godot/index.html
