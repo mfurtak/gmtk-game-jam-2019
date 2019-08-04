@@ -8,10 +8,17 @@
 [ext_resource path="res://player_sword.png" type="Texture" id=6]
 [ext_resource path="res://player_bow.png" type="Texture" id=7]
 [ext_resource path="res://wilhelm.wav" type="AudioStream" id=8]
+<<<<<<< HEAD
+[ext_resource path="res://Shield.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Sword.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Bow.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Bow.gd" type="Script" id=12]
+=======
 [ext_resource path="res://Sword.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Bow.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Bow.gd" type="Script" id=11]
 [ext_resource path="res://Shield.tscn" type="PackedScene" id=12]
+>>>>>>> b0692e259628322cd6383297c60648bf63b1d6ae
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 30 )
@@ -94,19 +101,32 @@ one_shot = true
 
 [node name="WilhelmScream" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 8 )
+<<<<<<< HEAD
 
 [node name="Equipped" type="Node2D" parent="."]
 editor/display_folded = true
 
-[node name="Sword" parent="Equipped" instance=ExtResource( 9 )]
+[node name="Shield" parent="Equipped" instance=ExtResource( 9 )]
+=======
+
+[node name="Equipped" type="Node2D" parent="."]
+editor/display_folded = true
+>>>>>>> b0692e259628322cd6383297c60648bf63b1d6ae
+
+[node name="Sword" parent="Equipped" instance=ExtResource( 10 )]
 position = Vector2( 16.6014, -19.8146 )
 
+<<<<<<< HEAD
+[node name="Bow" parent="Equipped" instance=ExtResource( 11 )]
+script = ExtResource( 12 )
+=======
 [node name="Bow" parent="Equipped" instance=ExtResource( 10 )]
 script = ExtResource( 11 )
 
 [node name="Shield" parent="Equipped" groups=[
 "requests_shake",
 ] instance=ExtResource( 12 )]
+>>>>>>> b0692e259628322cd6383297c60648bf63b1d6ae
 
 [node name="DeathTimer" type="Timer" parent="."]
 
