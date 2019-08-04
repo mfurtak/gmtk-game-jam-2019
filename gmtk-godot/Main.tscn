@@ -21,3 +21,5 @@ anchor_mode = 0
 current = true
 
 [node name="ScreenShake" parent="Camera2D" instance=ExtResource( 4 )]
+
+[node name="SfxPlayer" type="AudioStreamPlayer2D" parent="."]
