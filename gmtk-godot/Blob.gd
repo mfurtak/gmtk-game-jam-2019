@@ -11,6 +11,11 @@ const TOP_SPEED = 90
 const DECELERATION = 0.2
 const DAMAGE = 10
 
+func _ready():
+    $AnimatedSprite.play("default")
+    var offset : int = randi() % 4
+    $AnimatedSprite.frame = offset
+
 func on_sword_attacked(damage):
 	request_death_sfx()
 	self.queue_free()
