@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal shake_requested
+
 enum Items {SWORD, BOW, SHIELD}
 
 var sword_resource =  preload("res://sprites/sword.png")
@@ -16,12 +18,12 @@ var is_dead = false
 
 signal game_over
 
-const SPEED = 10
-const TOP_SPEED = 200
+const SPEED = 20
+const TOP_SPEED = 275
 const DECELERATION = .2
 const ARROW_OFFSET = 48
 
-const BASE_ITEMS_PERIOD = 3 # seconds
+const BASE_ITEMS_PERIOD = 2.5 # seconds
 const PER_ITEM_PERIOD = 1
 
 const MAX_HEALTH = 100
