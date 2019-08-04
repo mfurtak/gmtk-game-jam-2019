@@ -111,8 +111,12 @@ script = ExtResource( 11 )
 [node name="DeathTimer" type="Timer" parent="."]
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="InjuryRecoveryTimer" type="Timer" parent="."]
+wait_time = 0.25
 [connection signal="timeout" from="ItemSwapTimer" to="." method="_on_ItemSwapTimer_timeout"]
 [connection signal="timeout" from="SwordAttackTimer" to="." method="_on_SwordAttackTimer_timeout"]
 [connection signal="timeout" from="ShieldAttackTimer" to="." method="_on_ShieldAttackTimer_timeout"]
 [connection signal="timeout" from="BowCooldown" to="." method="_on_BowCooldown_timeout"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]
+[connection signal="timeout" from="InjuryRecoveryTimer" to="." method="_on_InjuryRecoveryTimer_timeout"]

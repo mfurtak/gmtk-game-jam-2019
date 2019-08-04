@@ -28,7 +28,8 @@ const PER_ITEM_PERIOD = 1
 
 const MAX_HEALTH = 100
 const MIN_HEALTH = 0
-var current_health = 100
+var current_health = MAX_HEALTH
+var can_take_damage = true
 
 var is_pink = false
 var is_attacking = false
@@ -113,15 +114,18 @@ func _process(delta):
 	_render()
 
 func on_player_attacked():
-	match current_item:
-		Items.SWORD:
-			current_health = max(MIN_HEALTH, current_health - 1)
-		Items.BOW:
-			current_health = max(MIN_HEALTH, current_health - 1)
-		Items.SHIELD:
-			pass
-		_:
-			print("spillover in get_item_name")
+	if can_take_damage:
+		match current_item:
+			Items.SWORD:
+				current_health = max(MIN_HEALTH, current_health - 1)
+			Items.BOW:
+				current_health = max(MIN_HEALTH, current_health - 1)
+			Items.SHIELD:
+				pass
+			_:
+				pass
+		can_take_damage = false
+		$InjuryRecoveryTimer.start()
 			
 	#TODO send enemy to death scene
 	if (current_health <= 0 && !is_dead):
@@ -278,3 +282,6 @@ func _on_ShieldAttackTimer_timeout():
 
 func _on_BowCooldown_timeout():
 	bow_cool = true
+
+func _on_InjuryRecoveryTimer_timeout():
+	can_take_damage = true
