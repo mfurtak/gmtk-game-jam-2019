@@ -23,3 +23,5 @@ current = true
 [node name="ScreenShake" parent="Camera2D" instance=ExtResource( 4 )]
 
 [node name="SfxPlayer" type="AudioStreamPlayer2D" parent="."]
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]

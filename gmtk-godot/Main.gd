@@ -1,6 +1,6 @@
 extends Node
 
-var current_level = "res://Level3.tscn"
+var current_level = "res://Level1.tscn"
 var level
 
 var blob_death_sfx = preload("res://audio/blob_death.wav")
@@ -42,6 +42,8 @@ func initialize_level(level_file):
 	
 	level = load(level_file).instance() 
 	level.set_name("CurrentLevel")
+	if level.has_method("requests_music"):
+		play_music(level.requests_music())
 	add_child(level)
 	
 		# Disconnect from anything that can request sfx
@@ -69,6 +71,15 @@ func _on_sfx_requested(res_path, position):
 	$SfxPlayer.stream = get_sfx(res_path)
 	$SfxPlayer.position = position
 	$SfxPlayer.play()
+
+func play_music(res_path):
+	print("play_music: ", res_path)
+	if $MusicPlayer.playing:
+		print("stopping music")
+		$MusicPlayer.stop()
+	$MusicPlayer.stream = load(res_path)
+	print("playing music")
+	$MusicPlayer.play()
 
 func _on_shake_requested(duration = 0.2, frequency = 15, amplitude = 16):
 	$Camera2D/ScreenShake.start(duration, frequency, amplitude)
