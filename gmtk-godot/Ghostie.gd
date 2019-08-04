@@ -4,9 +4,9 @@ var direction = Vector2()
 var velocity = Vector2()
 var is_ghosting = false
 const MAX_HEALTH = 20.0
-const SPEED = 40
-const TOP_SPEED = 150
-const DAMAGE = 25
+const SPEED = 30
+const TOP_SPEED = 130
+const DAMAGE = 30
 
 var current_health = MAX_HEALTH
 
