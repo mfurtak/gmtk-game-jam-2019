@@ -4,7 +4,7 @@
 [ext_resource path="res://sprites/thwomp.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 16.0
+radius = 32.0
 
 [node name="Thwomp" type="KinematicBody2D"]
 position = Vector2( 640, 352 )
@@ -14,6 +14,7 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
