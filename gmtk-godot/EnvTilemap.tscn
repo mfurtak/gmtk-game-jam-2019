@@ -5,3 +5,4 @@
 [node name="EnvTilemap" type="TileMap"]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
+format = 1

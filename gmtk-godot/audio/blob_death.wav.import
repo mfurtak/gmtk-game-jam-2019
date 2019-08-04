@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/blob_death.wav-4ffd2c10293cb3b6f4cbfbd232e9f37f.sample"
+
+[deps]
+
+source_file="res://audio/blob_death.wav"
+dest_files=[ "res://.import/blob_death.wav-4ffd2c10293cb3b6f4cbfbd232e9f37f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
