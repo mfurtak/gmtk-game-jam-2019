@@ -1,8 +1,10 @@
 extends Area2D
 
+export(Texture) var item_image
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$icon.texture = item_image
 
 func _physics_process(delta):
 	var bodies = get_overlapping_bodies()
