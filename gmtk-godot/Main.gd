@@ -32,8 +32,8 @@ func _on_exited(next_level):
 	print(next_level)
 	initialize_level(next_level)
 
-func _on_shake_requested():
-	$Camera2D/ScreenShake.start()
+func _on_shake_requested(duration = 0.2, frequency = 15, amplitude = 16):
+	$Camera2D/ScreenShake.start(duration, frequency, amplitude)
 
 func _on_game_over():
 	get_tree().change_scene("res://GameOver.tscn")
