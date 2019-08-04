@@ -3,10 +3,10 @@ extends Area2D
 var direction = Vector2()
 var velocity = Vector2()
 var is_ghosting = false
-const MAX_HEALTH = 30.0
-const SPEED = 10
-const TOP_SPEED = 70
-const DAMAGE = 10
+const MAX_HEALTH = 20.0
+const SPEED = 40
+const TOP_SPEED = 150
+const DAMAGE = 25
 
 var current_health = MAX_HEALTH
 
