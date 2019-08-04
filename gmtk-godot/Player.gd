@@ -277,7 +277,6 @@ func _get_rotation():
 		
 func on_death():
 	is_dead = true
-	$WilhelmScream.play()
 	velocity = Vector2()
 	
 	#$Tween.interpolate_property(self, "position", position, 
