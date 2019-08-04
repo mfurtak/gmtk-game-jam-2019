@@ -4,7 +4,14 @@ var attacking setget set_sword_attacking, get_sword_attacking
 var facing_direction = Vector2()
 var current_rotation = 0
 
+var sword1_sfx = preload("res://audio/sword1.wav")
+var sword2_sfx = preload("res://audio/sword2.wav")
+var sword3_sfx = preload("res://audio/sword3.wav")
+var sword_sfx = [sword1_sfx, sword2_sfx, sword3_sfx]
+
 var time_left = 0
+
+
 func _ready():
 	connect('body_entered', self, '_on_entered')
 	connect('area_entered', self, '_on_entered')
@@ -53,9 +60,20 @@ func _on_entered(body):
 	if visible and body.has_method('on_sword_attacked'):
 		body.on_sword_attacked(10)
 		print("sword attacked")
-		
+
+func get_random_sword_sfx():
+	return sword_sfx[randi() % 3]
+
+func play_sword_sfx():
+	if $SfxPlayer.playing:
+		$SfxPlayer.stop()
+	$SfxPlayer.stream = get_random_sword_sfx()
+	$SfxPlayer.play()
+
 func set_sword_attacking(new_attacking):
-    attacking = new_attacking
+	attacking = new_attacking
+	if attacking:
+		play_sword_sfx()
 
 func get_sword_attacking():
     return attacking
