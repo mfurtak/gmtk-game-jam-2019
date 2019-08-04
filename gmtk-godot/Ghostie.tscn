@@ -19,6 +19,7 @@ animations = [ {
 "enemy",
 ]]
 position = Vector2( 640, 352 )
+z_index = 5
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

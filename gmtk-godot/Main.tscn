@@ -1,37 +1,23 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://DeadPlayer.tscn" type="PackedScene" id=3]
-[ext_resource path="res://HUD.tscn" type="PackedScene" id=4]
-[ext_resource path="res://ScreenShake.tscn" type="PackedScene" id=5]
-[ext_resource path="res://blob.png" type="Texture" id=6]
-
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ScreenShake.tscn" type="PackedScene" id=4]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 32, 32 )
-
-[node name="DeadPlayer" parent="." instance=ExtResource( 3 )]
+z_index = 4
 
 [node name="HUD" parent="." groups=[
 "ItemSwap",
-] instance=ExtResource( 4 )]
+] instance=ExtResource( 3 )]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 current = true
 
-[node name="ScreenShake" parent="Camera2D" instance=ExtResource( 5 )]
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 1 )
+[node name="ScreenShake" parent="Camera2D" instance=ExtResource( 4 )]
