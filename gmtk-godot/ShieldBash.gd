@@ -56,9 +56,4 @@ func on_shield_attacked(damage):
 	velocity.y = -velocity.y * damage
 
 func _physics_process(delta):
-	#print(player.global_position)
-	#print(get_position())
-    # detect player overlap in x or y?
-	#print("ASDF" + str(player))
-	#print("facebook.com" + str(player.translation))
 	pass

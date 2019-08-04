@@ -1,6 +1,6 @@
 extends Node
 
-var current_level = "res://Level1.tscn"
+var current_level = "res://LevelAnit.tscn"
 var level
 
 func _ready():

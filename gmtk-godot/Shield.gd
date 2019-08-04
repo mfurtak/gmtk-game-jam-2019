@@ -21,7 +21,7 @@ func _on_entered(body):
 		else:
 			damage = 1.2
 			
-		body.on_shield_attacked(damage)
+ 		body.on_shield_attacked(damage)
 		
 func set_shield_attacking(new_attacking):
     attacking = new_attacking
