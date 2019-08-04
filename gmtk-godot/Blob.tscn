@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Blob.gd" type="Script" id=1]
 [ext_resource path="res://blob.png" type="Texture" id=2]
+[ext_resource path="res://audio/blob_death.wav" type="AudioStream" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.0
 
-[node name="Blob" type="KinematicBody2D"]
+[node name="Blob" type="KinematicBody2D" groups=[
+"requests_sfx",
+]]
 position = Vector2( 640, 352 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -23,4 +26,12 @@ shape = SubResource( 1 )
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 autostart = true
+
+[node name="ShieldAttackReactionTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="SfxPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="ShieldAttackReactionTimer" to="." method="_on_ShieldAttackReactionTimer_timeout"]
