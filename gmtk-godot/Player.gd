@@ -36,7 +36,7 @@ var is_sword_attacking = false
 var is_shield_attacking = false
 var bow_cool = true
 
-var items_queue = [Items.BOW, Items.SHIELD, Items.SWORD]
+var items_queue = [Items.SWORD]
 
 var current_item = items_queue[-1]
 var sprites = null

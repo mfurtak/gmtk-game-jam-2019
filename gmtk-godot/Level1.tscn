@@ -1,10 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Exit.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Pickup.tscn" type="PackedScene" id=2]
-[ext_resource path="res://sprites/sword.png" type="Texture" id=3]
-[ext_resource path="res://PlayerSpawn.tscn" type="PackedScene" id=4]
-[ext_resource path="res://simple_tileset.tres" type="TileSet" id=5]
+[ext_resource path="res://PlayerSpawn.tscn" type="PackedScene" id=2]
+[ext_resource path="res://simple_tileset.tres" type="TileSet" id=3]
 
 [node name="Level1" type="Node2D"]
 
@@ -16,18 +14,11 @@ next_scene = "res://Level2.tscn"
 
 [node name="Pickups" type="Node" parent="."]
 
-[node name="SwordPickup" parent="Pickups" instance=ExtResource( 2 )]
-position = Vector2( 227.064, 315.707 )
-item_image = ExtResource( 3 )
-
-[node name="Pickup" parent="Pickups" instance=ExtResource( 2 )]
-visible = false
-
-[node name="PlayerSpawn" parent="." instance=ExtResource( 4 )]
+[node name="PlayerSpawn" parent="." instance=ExtResource( 2 )]
 position = Vector2( 38.0219, 320.14 )
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = ExtResource( 5 )
+tile_set = ExtResource( 3 )
 cell_size = Vector2( 32, 32 )
 cell_quadrant_size = 32
 format = 1
