@@ -57,7 +57,7 @@ func _physics_process(delta):
 	pass
 
 func _on_entered(body):
-	if visible and body.has_method('on_sword_attacked'):
+	if time_left > 0 and visible and body.has_method('on_sword_attacked'):
 		body.on_sword_attacked(10)
 		print("sword attacked")
 
@@ -73,6 +73,10 @@ func play_sword_sfx():
 func set_sword_attacking(new_attacking):
 	attacking = new_attacking
 	if attacking:
+		for body in get_overlapping_bodies():
+			if body.has_method('on_sword_attacked'):
+				body.on_sword_attacked(10)
+		print("sword attacked")
 		play_sword_sfx()
 
 func get_sword_attacking():
