@@ -51,7 +51,7 @@ func on_attacked():
 func on_shot(damage):
 	print("was shot!")
 
-func on_sword_attacked():
+func on_sword_attacked(damage):
 	print("Sword ouch")
 	
 func on_shield_attacked(damage):
