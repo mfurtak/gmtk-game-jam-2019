@@ -61,48 +61,49 @@ custom_fonts/font = SubResource( 2 )
 text = "New Game"
 
 [node name="Bylines" type="VBoxContainer" parent="LeftRightSplit/LeftSide"]
+editor/display_folded = true
 margin_top = 251.0
 margin_right = 344.0
 margin_bottom = 492.0
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Label" type="Label" parent="LeftRightSplit/LeftSide/Bylines"]
+[node name="By" type="Label" parent="LeftRightSplit/LeftSide/Bylines"]
 margin_top = 15.0
 margin_right = 344.0
 margin_bottom = 54.0
 custom_fonts/font = SubResource( 3 )
 text = "A game by:"
 
-[node name="Label3" type="Label" parent="LeftRightSplit/LeftSide/Bylines"]
+[node name="betanutz" type="Label" parent="LeftRightSplit/LeftSide/Bylines"]
 margin_top = 58.0
 margin_right = 344.0
 margin_bottom = 97.0
 custom_fonts/font = SubResource( 3 )
 text = "    betanutz"
 
-[node name="Label4" type="Label" parent="LeftRightSplit/LeftSide/Bylines"]
+[node name="ctrlaltbanana" type="Label" parent="LeftRightSplit/LeftSide/Bylines"]
 margin_top = 101.0
 margin_right = 344.0
 margin_bottom = 140.0
 custom_fonts/font = SubResource( 3 )
 text = "    ctrlaltbanana"
 
-[node name="Label5" type="Label" parent="LeftRightSplit/LeftSide/Bylines"]
+[node name="jakeout" type="Label" parent="LeftRightSplit/LeftSide/Bylines"]
 margin_top = 144.0
 margin_right = 344.0
 margin_bottom = 183.0
 custom_fonts/font = SubResource( 3 )
 text = "    jakeout"
 
-[node name="Label6" type="Label" parent="LeftRightSplit/LeftSide/Bylines"]
+[node name="shingensou" type="Label" parent="LeftRightSplit/LeftSide/Bylines"]
 margin_top = 187.0
 margin_right = 344.0
 margin_bottom = 226.0
 custom_fonts/font = SubResource( 3 )
 text = "    ShinGensou"
 
-[node name="Label7" type="Label" parent="LeftRightSplit/LeftSide"]
+[node name="ForGameJam" type="Label" parent="LeftRightSplit/LeftSide"]
 margin_top = 542.0
 margin_right = 344.0
 margin_bottom = 581.0
