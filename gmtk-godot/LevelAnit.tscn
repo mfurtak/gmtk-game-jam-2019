@@ -1,45 +1,126 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Exit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Thwomp.tscn" type="PackedScene" id=2]
-[ext_resource path="res://ShieldBash.gd" type="Script" id=3]
-[ext_resource path="res://Pickup.tscn" type="PackedScene" id=4]
-[ext_resource path="res://PlayerSpawn.tscn" type="PackedScene" id=5]
-[ext_resource path="res://simple_tileset.tres" type="TileSet" id=6]
+[ext_resource path="res://Goomba.gd" type="Script" id=3]
+[ext_resource path="res://ShieldBash.gd" type="Script" id=4]
+[ext_resource path="res://Pickup.tscn" type="PackedScene" id=5]
+[ext_resource path="res://PlayerSpawn.tscn" type="PackedScene" id=6]
+[ext_resource path="res://simple_tileset.tres" type="TileSet" id=7]
+
+[sub_resource type="ShaderMaterial" id=1]
 
 [node name="LevelAnit" type="Node2D"]
 
 [node name="Exit" parent="." instance=ExtResource( 1 )]
-position = Vector2( 129, 480 )
+position = Vector2( 902.84, 82.6369 )
 next_scene = "res://Level1.tscn"
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="ShieldBash" parent="Enemies" instance=ExtResource( 2 )]
-position = Vector2( 352, 256 )
+[node name="GoombaHorizontal" parent="Enemies" instance=ExtResource( 2 )]
+editor/display_folded = true
+position = Vector2( 719.373, 80.3463 )
 script = ExtResource( 3 )
 
-[node name="Pickups" type="Node" parent="."]
+[node name="GoombaWaitTimer" type="Timer" parent="Enemies/GoombaHorizontal"]
+wait_time = 0.4
+
+[node name="GoombaHorizontal6" parent="Enemies" instance=ExtResource( 2 )]
 editor/display_folded = true
+position = Vector2( 854.327, 276.886 )
+script = ExtResource( 3 )
 
-[node name="ShieldPickup" parent="Pickups" instance=ExtResource( 4 )]
-visible = false
-position = Vector2( 129.062, 383.974 )
+[node name="GoombaWaitTimer" type="Timer" parent="Enemies/GoombaHorizontal6"]
+wait_time = 0.4
 
-[node name="SwordPickup" parent="Pickups" instance=ExtResource( 4 )]
+[node name="GoombaHorizontal7" parent="Enemies" instance=ExtResource( 2 )]
+editor/display_folded = true
+position = Vector2( 949.651, 175.671 )
+script = ExtResource( 3 )
+
+[node name="GoombaWaitTimer" type="Timer" parent="Enemies/GoombaHorizontal7"]
+wait_time = 0.4
+
+[node name="GoombaHorizontal5" parent="Enemies" instance=ExtResource( 2 )]
+editor/display_folded = true
+position = Vector2( 103.514, 221.726 )
+script = ExtResource( 3 )
+
+[node name="GoombaWaitTimer" type="Timer" parent="Enemies/GoombaHorizontal5"]
+wait_time = 0.4
+
+[node name="GoombaHorizontal2" parent="Enemies" instance=ExtResource( 2 )]
+editor/display_folded = true
+position = Vector2( 296.84, 351.324 )
+script = ExtResource( 3 )
+
+[node name="GoombaWaitTimer" type="Timer" parent="Enemies/GoombaHorizontal2"]
+wait_time = 0.4
+
+[node name="GoombaHorizontal3" parent="Enemies" instance=ExtResource( 2 )]
+editor/display_folded = true
+position = Vector2( 354.142, 428.976 )
+script = ExtResource( 3 )
+
+[node name="GoombaWaitTimer" type="Timer" parent="Enemies/GoombaHorizontal3"]
+wait_time = 0.4
+
+[node name="GoombaHorizontal4" parent="Enemies" instance=ExtResource( 2 )]
+editor/display_folded = true
+position = Vector2( 247.036, 505.021 )
+script = ExtResource( 3 )
+
+[node name="GoombaWaitTimer" type="Timer" parent="Enemies/GoombaHorizontal4"]
+wait_time = 0.4
+
+[node name="ShieldBash4" parent="Enemies" instance=ExtResource( 2 )]
+modulate = Color( 0.101961, 0.670588, 0.0823529, 1 )
+material = SubResource( 1 )
+position = Vector2( 283.879, 610.521 )
+script = ExtResource( 4 )
+
+[node name="ShieldBash5" parent="Enemies" instance=ExtResource( 2 )]
+modulate = Color( 0.101961, 0.670588, 0.0823529, 1 )
+material = SubResource( 1 )
+position = Vector2( 905.629, 611.056 )
+script = ExtResource( 4 )
+
+[node name="ShieldBash6" parent="Enemies" instance=ExtResource( 2 )]
+modulate = Color( 0.101961, 0.670588, 0.0823529, 1 )
+material = SubResource( 1 )
+position = Vector2( 585.382, 483.6 )
+script = ExtResource( 4 )
+
+[node name="ShieldBash7" parent="Enemies" instance=ExtResource( 2 )]
+modulate = Color( 0.101961, 0.670588, 0.0823529, 1 )
+material = SubResource( 1 )
+position = Vector2( 584.846, 408.626 )
+script = ExtResource( 4 )
+
+[node name="Pickups" type="Node" parent="."]
+
+[node name="ShieldPickup" parent="Pickups" instance=ExtResource( 5 )]
+position = Vector2( 271.513, 217.424 )
+
+[node name="SwordPickup" parent="Pickups" instance=ExtResource( 5 )]
 visible = false
 position = Vector2( 64.2627, 66.4053 )
 
-[node name="BowPickup" parent="Pickups" instance=ExtResource( 4 )]
-position = Vector2( 126.384, 303.109 )
+[node name="BowPickup" parent="Pickups" instance=ExtResource( 5 )]
+visible = false
+position = Vector2( 291.863, 285.972 )
 
-[node name="Pickup" parent="Pickups" instance=ExtResource( 4 )]
+[node name="Pickup" parent="Pickups" instance=ExtResource( 5 )]
 visible = false
 
-[node name="PlayerSpawn" parent="." instance=ExtResource( 5 )]
-position = Vector2( 512, 512 )
+[node name="PlayerSpawn" parent="." instance=ExtResource( 6 )]
+position = Vector2( 108.211, 652.309 )
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = ExtResource( 6 )
+scale = Vector2( 0.5, 0.5 )
+tile_set = ExtResource( 7 )
+cell_size = Vector2( 32, 32 )
+cell_quadrant_size = 32
 format = 1
-tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 65536, 0, 0, 65551, 0, 0, 131072, 0, 0, 131087, 0, 0, 196608, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 196623, 0, 0, 262144, 0, 0, 262159, 0, 0, 327680, 0, 0, 327695, 0, 0, 393216, 0, 0, 393231, 0, 0, 458752, 0, 0, 458767, 0, 0, 524288, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0, 589824, 0, 0, 589839, 0, 0, 655360, 0, 0, 655361, 0, 0, 655362, 0, 0, 655363, 0, 0, 655364, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 655368, 0, 0, 655369, 0, 0, 655370, 0, 0, 655371, 0, 0, 655372, 0, 0, 655373, 0, 0, 655374, 0, 0, 655375, 0, 0 )
+tile_data = PoolIntArray( 0, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 24, 0, 0, 25, 0, 0, 26, 0, 0, 27, 0, 0, 28, 0, 0, 29, 0, 0, 30, 0, 0, 31, 0, 0, 32, 0, 0, 33, 0, 0, 34, 0, 0, 36, 0, 0, 37, 0, 0, 38, 0, 0, 39, 0, 0, 40, 0, 0, 41, 0, 0, 42, 0, 0, 43, 0, 0, 44, 0, 0, 45, 0, 0, 46, 0, 0, 47, 0, 0, 48, 0, 0, 49, 0, 0, 50, 0, 0, 51, 0, 0, 52, 0, 0, 53, 0, 0, 54, 0, 0, 55, 0, 0, 56, 0, 0, 57, 0, 0, 58, 0, 0, 59, 0, 0, 60, 0, 0, 61, 0, 0, 62, 0, 0, 65536, 0, 0, 131072, 0, 0, 131120, 0, 0, 131134, 0, 0, 196608, 0, 0, 196656, 0, 0, 196670, 0, 0, 262144, 0, 0, 262192, 0, 0, 262206, 0, 0, 327680, 0, 0, 327728, 0, 0, 327742, 0, 0, 393216, 0, 0, 393264, 0, 0, 393278, 0, 0, 458752, 0, 0, 458800, 0, 0, 458814, 0, 0, 524288, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524303, 0, 0, 524304, 0, 0, 524305, 0, 0, 524306, 0, 0, 524307, 0, 0, 524308, 0, 0, 524310, 0, 0, 524311, 0, 0, 524312, 0, 0, 524313, 0, 0, 524314, 0, 0, 524315, 0, 0, 524316, 0, 0, 524317, 0, 0, 524318, 0, 0, 524319, 0, 0, 524320, 0, 0, 524321, 0, 0, 524323, 0, 0, 524324, 0, 0, 524325, 0, 0, 524336, 0, 0, 524350, 0, 0, 589824, 0, 0, 589835, 0, 0, 589872, 0, 0, 589886, 0, 0, 655360, 0, 0, 655371, 0, 0, 655408, 0, 0, 655422, 0, 0, 720896, 0, 0, 720907, 0, 0, 720944, 0, 0, 720958, 0, 0, 786432, 0, 0, 786443, 0, 0, 786494, 0, 0, 851968, 0, 0, 851979, 0, 0, 852016, 0, 0, 852030, 0, 0, 852066, 0, 0, 917504, 0, 0, 917515, 0, 0, 917552, 0, 0, 917566, 0, 0, 983040, 0, 0, 983051, 0, 0, 983088, 0, 0, 983102, 0, 0, 1048576, 0, 0, 1048587, 0, 0, 1048624, 0, 0, 1048638, 0, 0, 1114112, 0, 0, 1114123, 0, 0, 1114160, 0, 0, 1114174, 0, 0, 1179648, 0, 0, 1179659, 0, 0, 1179696, 0, 0, 1179710, 0, 0, 1245184, 0, 0, 1245195, 0, 0, 1245232, 0, 0, 1245246, 0, 0, 1310720, 0, 0, 1310731, 0, 0, 1310745, 0, 0, 1310746, 0, 0, 1310748, 0, 0, 1310749, 0, 0, 1310750, 0, 0, 1310751, 0, 0, 1310752, 0, 0, 1310753, 0, 0, 1310754, 0, 0, 1310755, 0, 0, 1310756, 0, 0, 1310757, 0, 0, 1310758, 0, 0, 1310759, 0, 0, 1310760, 0, 0, 1310761, 0, 0, 1310762, 0, 0, 1310763, 0, 0, 1310764, 0, 0, 1310765, 0, 0, 1310766, 0, 0, 1310768, 0, 0, 1310782, 0, 0, 1376256, 0, 0, 1376267, 0, 0, 1376281, 0, 0, 1441792, 0, 0, 1441803, 0, 0, 1441817, 0, 0, 1441854, 0, 0, 1507328, 0, 0, 1507339, 0, 0, 1507353, 0, 0, 1507390, 0, 0, 1572864, 0, 0, 1572875, 0, 0, 1572889, 0, 0, 1572926, 0, 0, 1638400, 0, 0, 1638425, 0, 0, 1638462, 0, 0, 1703936, 0, 0, 1703947, 0, 0, 1703961, 0, 0, 1703998, 0, 0, 1769472, 0, 0, 1769483, 0, 0, 1769497, 0, 0, 1769534, 0, 0, 1835008, 0, 0, 1835019, 0, 0, 1835033, 0, 0, 1835070, 0, 0, 1900544, 0, 0, 1900555, 0, 0, 1900569, 0, 0, 1900606, 0, 0, 1966080, 0, 0, 1966091, 0, 0, 1966105, 0, 0, 1966142, 0, 0, 2031616, 0, 0, 2031627, 0, 0, 2031641, 0, 0, 2031678, 0, 0, 2097152, 0, 0, 2097163, 0, 0, 2097214, 0, 0, 2162688, 0, 0, 2162699, 0, 0, 2162713, 0, 0, 2162714, 0, 0, 2162715, 0, 0, 2162716, 0, 0, 2162717, 0, 0, 2162718, 0, 0, 2162719, 0, 0, 2162720, 0, 0, 2162721, 0, 0, 2162723, 0, 0, 2162724, 0, 0, 2162725, 0, 0, 2162726, 0, 0, 2162727, 0, 0, 2162728, 0, 0, 2162729, 0, 0, 2162730, 0, 0, 2162731, 0, 0, 2162732, 0, 0, 2162733, 0, 0, 2162734, 0, 0, 2162735, 0, 0, 2162736, 0, 0, 2162750, 0, 0, 2228224, 0, 0, 2228235, 0, 0, 2228286, 0, 0, 2293760, 0, 0, 2293771, 0, 0, 2293822, 0, 0, 2359296, 0, 0, 2359307, 0, 0, 2359358, 0, 0, 2424832, 0, 0, 2424843, 0, 0, 2424894, 0, 0, 2490368, 0, 0, 2490379, 0, 0, 2490430, 0, 0, 2555904, 0, 0, 2555915, 0, 0, 2555966, 0, 0, 2621440, 0, 0, 2621451, 0, 0, 2621502, 0, 0, 2686976, 0, 0, 2686987, 0, 0, 2752512, 0, 0, 2752523, 0, 0, 2752525, 0, 0, 2752526, 0, 0, 2752527, 0, 0, 2752528, 0, 0, 2752529, 0, 0, 2752530, 0, 0, 2752531, 0, 0, 2752532, 0, 0, 2752533, 0, 0, 2752534, 0, 0, 2752535, 0, 0, 2752536, 0, 0, 2752537, 0, 0, 2752538, 0, 0, 2752539, 0, 0, 2752540, 0, 0, 2752541, 0, 0, 2752542, 0, 0, 2752543, 0, 0, 2752544, 0, 0, 2752546, 0, 0, 2752547, 0, 0, 2752548, 0, 0, 2752549, 0, 0, 2752550, 0, 0, 2752551, 0, 0, 2752552, 0, 0, 2752553, 0, 0, 2752554, 0, 0, 2752555, 0, 0, 2752556, 0, 0, 2752557, 0, 0, 2752558, 0, 0, 2752559, 0, 0, 2752561, 0, 0, 2752562, 0, 0, 2752563, 0, 0, 2752564, 0, 0, 2752565, 0, 0, 2752566, 0, 0, 2752567, 0, 0, 2752568, 0, 0, 2752569, 0, 0, 2752570, 0, 0, 2752571, 0, 0, 2752572, 0, 0, 2752573, 0, 0, 2752574, 0, 0 )

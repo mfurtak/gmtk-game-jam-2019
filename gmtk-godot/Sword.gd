@@ -15,7 +15,7 @@ func _physics_process(delta):
 
 func _on_entered(body):
 	if visible and body.has_method('on_sword_attacked'):
-		body.on_sword_attacked()
+		body.on_sword_attacked(10)
 		
 func set_sword_attacking(new_attacking):
     attacking = new_attacking

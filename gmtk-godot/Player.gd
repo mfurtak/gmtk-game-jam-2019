@@ -18,12 +18,12 @@ var is_dead = false
 
 signal game_over
 
-const SPEED = 10
-const TOP_SPEED = 200
+const SPEED = 20
+const TOP_SPEED = 275
 const DECELERATION = .2
 const ARROW_OFFSET = 48
 
-const BASE_ITEMS_PERIOD = 3 # seconds
+const BASE_ITEMS_PERIOD = 2.5 # seconds
 const PER_ITEM_PERIOD = 1
 
 const MAX_HEALTH = 100
@@ -36,7 +36,8 @@ var is_sword_attacking = false
 var is_shield_attacking = false
 var bow_cool = true
 
-var items_queue = [Items.BOW, Items.SHIELD, Items.SWORD]
+# var items_queue = [Items.BOW, Items.SHIELD, Items.SWORD]
+var items_queue = [Items.SWORD]
 
 var current_item = items_queue[-1]
 var sprites = null
