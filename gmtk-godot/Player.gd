@@ -37,7 +37,7 @@ var is_sword_attacking = false
 var is_shield_attacking = false
 var bow_cool = true
 
-var items_queue = [Items.SWORD]
+var items_queue = [Items.SHIELD]
 
 var current_item = items_queue[-1]
 var sprites = null
@@ -208,6 +208,15 @@ func _render():
 		animation_prefix = "up"
 	
 	$GnomeSprite.play(animation_prefix + animation_suffix)
+	var player_pos = $GnomeSprite.get_position_in_parent()
+	var equipment_pos = $Equipped.get_position_in_parent()
+	
+	if facing_direction.y < 0 or facing_direction.x < 0:
+		move_child($Equipped, min(player_pos, equipment_pos))
+		move_child($GnomeSprite, max(player_pos, equipment_pos))
+	if facing_direction.y > 0 or facing_direction.x > 0:
+		move_child($Equipped, max(player_pos, equipment_pos))
+		move_child($GnomeSprite, min(player_pos, equipment_pos))
 			
 	_do_sword_stuff()
 	_do_shield_stuff()
@@ -220,16 +229,6 @@ func _do_sword_stuff():
 			$Equipped/Sword.set_sword_attacking(true)
 		else:
 			$Equipped/Sword.set_sword_attacking(false)
-		
-		var player_pos = $GnomeSprite.get_position_in_parent()
-		var sword_pos = $Equipped.get_position_in_parent()
-		
-		if facing_direction.y < 0 or facing_direction.x < 0:
-			move_child($Equipped, min(player_pos, sword_pos))
-			move_child($GnomeSprite, max(player_pos, sword_pos))
-		if facing_direction.y > 0 or facing_direction.x > 0:
-			move_child($Equipped, max(player_pos, sword_pos))
-			move_child($GnomeSprite, min(player_pos, sword_pos))
 		$Equipped/Sword.facing_direction = facing_direction
 		$Equipped/Sword.current_rotation = current_rotation
 		$Equipped/Sword.time_left = $SwordAttackTimer.time_left
@@ -243,9 +242,9 @@ func _do_shield_stuff():
 			$Equipped/Shield.set_shield_attacking(true)
 		else:
 			$Equipped/Shield.set_shield_attacking(false)
-			
-		$Equipped/Shield.rotation = current_rotation
-		$Equipped/Shield.position = $ShieldAttackTimer.time_left * 10 * facing_direction + facing_direction*16
+		$Equipped/Shield.facing_direction = facing_direction
+		$Equipped/Shield.current_rotation = current_rotation
+		$Equipped/Shield.time_left = $ShieldAttackTimer.time_left
 	else:
 		$Equipped/Shield.hide()
 

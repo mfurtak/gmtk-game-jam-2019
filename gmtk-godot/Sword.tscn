@@ -12,7 +12,7 @@
 radius = 27.7546
 height = 9.86055
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
@@ -25,7 +25,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=7]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
@@ -49,9 +49,9 @@ shape = SubResource( 1 )
 [node name="Sword" type="Node2D" parent="."]
 
 [node name="Down" type="AnimatedSprite" parent="Sword"]
-frames = SubResource( 6 )
+frames = SubResource( 2 )
 animation = "slash"
 
 [node name="Right" type="AnimatedSprite" parent="Sword"]
-frames = SubResource( 7 )
+frames = SubResource( 3 )
 animation = "idle"
