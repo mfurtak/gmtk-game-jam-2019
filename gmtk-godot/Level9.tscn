@@ -23,8 +23,8 @@ you_win = true
 [node name="Blob4" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 224, 112 )
 
-[node name="Ghostie" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 96, 128 )
+[node name="Blob7" parent="Enemies" instance=ExtResource( 3 )]
+position = Vector2( 96, 112 )
 
 [node name="Ghostie2" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( 768, 160 )
@@ -34,6 +34,9 @@ position = Vector2( 64, 352 )
 
 [node name="Blob2" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 160, 288 )
+
+[node name="Blob6" parent="Enemies" instance=ExtResource( 3 )]
+position = Vector2( 448, 96 )
 
 [node name="Blob3" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 320, 416 )
