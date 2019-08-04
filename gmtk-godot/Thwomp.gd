@@ -2,6 +2,10 @@ extends KinematicBody2D
 
 var direction = Vector2()
 var velocity = Vector2()
+var thwomp1_sfx = preload("res://audio/thwomp1.wav")
+var thwomp2_sfx = preload("res://audio/thwomp2.wav")
+var thwomp3_sfx = preload("res://audio/thwomp3.wav")
+var thwomp_sfx = [thwomp1_sfx,thwomp2_sfx,thwomp3_sfx]
 
 const SPEED = 10
 const TOP_SPEED = 500
@@ -69,6 +73,7 @@ func _process(delta):
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		if  collision.collider.has_method("on_player_attacked"):
+			play_thwomp_sfx()
 			collision.collider.on_player_attacked(self)
 	
 	if velocity.y > 0:		
@@ -86,16 +91,24 @@ func on_attacked():
 	pass # self.queue_free()
 
 func on_shot(damage):
-	print("was shot!")
+	pass
 
 func on_sword_attacked(damage):
-	print("Sword ouch")
+	pass
 	
 func on_shield_attacked(damage):
-	print("Shield ouch")
 	velocity.x = -velocity.x * damage
 	velocity.y = -velocity.y * damage
 
+func get_random_thwomp_sfx():
+	return thwomp_sfx[randi() % thwomp_sfx.size()-1]
+
+func play_thwomp_sfx():
+	if $SfxPlayer.playing:
+		$SfxPlayer.stop()
+	$SfxPlayer.stream = get_random_thwomp_sfx()
+	$SfxPlayer.play()
+	
 func _physics_process(delta):
 	#print(player.global_position)
 	#print(get_position())
