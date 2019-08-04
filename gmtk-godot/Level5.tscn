@@ -22,10 +22,10 @@ next_scene = "res://Level6.tscn"
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Ghostie" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 287.086, 85.8418 )
+position = Vector2( 448, 93 )
 
 [node name="Ghostie2" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 772.276, 93.8747 )
+position = Vector2( 800, 160 )
 
 [node name="Blob" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( 704, 480 )

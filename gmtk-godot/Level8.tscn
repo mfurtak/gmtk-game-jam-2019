@@ -43,7 +43,7 @@ position = Vector2( 675.345, 426.974 )
 position = Vector2( 832.255, 607.983 )
 
 [node name="Thwomp2" parent="Enemies" instance=ExtResource( 5 )]
-position = Vector2( 544, 96 )
+position = Vector2( 544, 112 )
 
 [node name="Thwomp3" parent="Enemies" instance=ExtResource( 5 )]
 position = Vector2( 254.954, 542.649 )
@@ -55,7 +55,7 @@ editor/display_folded = true
 visible = false
 
 [node name="PlayerSpawn" parent="." instance=ExtResource( 7 )]
-position = Vector2( 963, 96 )
+position = Vector2( 960, 192 )
 
 [node name="ImpassableTilemap" parent="." instance=ExtResource( 8 )]
 position = Vector2( -63.1925, -64.2636 )
