@@ -2,7 +2,7 @@
 
 [ext_resource path="res://menus/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://fonts/Bebas-Regular.otf" type="DynamicFontData" id=2]
-[ext_resource path="res://sprites/title_image.png" type="Texture" id=3]
+[ext_resource path="res://tiny_gnome.png" type="Texture" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 72
@@ -117,9 +117,9 @@ margin_bottom = 576.0
 size_flags_horizontal = 3
 
 [node name="GameLogo" type="TextureRect" parent="LeftRightSplit/RightSide"]
-margin_left = 114.0
-margin_top = 168.0
-margin_right = 434.0
-margin_bottom = 408.0
+margin_left = 18.0
+margin_top = 109.0
+margin_right = 530.0
+margin_bottom = 466.0
 texture = ExtResource( 3 )
 [connection signal="pressed" from="LeftRightSplit/LeftSide/MenuButtons/NewGame" to="." method="_on_NewGame_pressed"]
