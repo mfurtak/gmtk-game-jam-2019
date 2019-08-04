@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://sprites/tiles/floor2.png" type="Texture" id=1]
-[ext_resource path="res://sprites/tiles/floor1.png" type="Texture" id=2]
+[ext_resource path="res://sprites/tiles/floor1_new.png" type="Texture" id=2]
 [ext_resource path="res://sprites/tiles/earthtile.png" type="Texture" id=3]
 [ext_resource path="res://sprites/tiles/floor3.png" type="Texture" id=4]
 [ext_resource path="res://sprites/tiles/floor4.png" type="Texture" id=5]
@@ -12,18 +12,18 @@
 [ext_resource path="res://sprites/tiles/wall5.png" type="Texture" id=10]
 [ext_resource path="res://sprites/tiles/floor5.png" type="Texture" id=11]
 
-[sub_resource type="TileSet" id=3]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16, 16 )
+[sub_resource type="TileSet" id=1]
 
 [sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 16, 16 )
+
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 16, 32 )
 
 [node name="Node2D" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = SubResource( 3 )
+tile_set = SubResource( 1 )
 cell_size = Vector2( 32, 64 )
 format = 1
 
@@ -65,7 +65,7 @@ __meta__ = {
 [node name="StaticBody2D" type="StaticBody2D" parent="floor4"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="floor4/StaticBody2D"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="floor10" type="Sprite" parent="."]
 position = Vector2( 176, 112 )
@@ -77,7 +77,7 @@ __meta__ = {
 [node name="StaticBody2D" type="StaticBody2D" parent="floor10"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="floor10/StaticBody2D"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="floor6" type="Sprite" parent="."]
 position = Vector2( 48, 192 )
@@ -89,7 +89,7 @@ __meta__ = {
 [node name="StaticBody2D" type="StaticBody2D" parent="floor6"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="floor6/StaticBody2D"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="floor7" type="Sprite" parent="."]
 position = Vector2( 112, 192 )
@@ -101,7 +101,7 @@ __meta__ = {
 [node name="StaticBody2D" type="StaticBody2D" parent="floor7"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="floor7/StaticBody2D"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="floor8" type="Sprite" parent="."]
 position = Vector2( 176, 192 )
@@ -113,7 +113,7 @@ __meta__ = {
 [node name="StaticBody2D" type="StaticBody2D" parent="floor8"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="floor8/StaticBody2D"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="floor9" type="Sprite" parent="."]
 position = Vector2( 240, 192 )
@@ -125,7 +125,7 @@ __meta__ = {
 [node name="StaticBody2D" type="StaticBody2D" parent="floor9"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="floor9/StaticBody2D"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="floor5" type="Sprite" parent="."]
 position = Vector2( 112, 112 )
@@ -137,4 +137,4 @@ __meta__ = {
 [node name="StaticBody2D" type="StaticBody2D" parent="floor5"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="floor5/StaticBody2D"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )

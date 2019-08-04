@@ -28,5 +28,5 @@ position = Vector2( 788.877, 378.776 )
 position = Vector2( 64, 319 )
 
 [node name="Exit" parent="." instance=ExtResource( 4 )]
-position = Vector2( 988.778, 319.184 )
+position = Vector2( 960, 319 )
 next_scene = "res://Level2.tscn"
