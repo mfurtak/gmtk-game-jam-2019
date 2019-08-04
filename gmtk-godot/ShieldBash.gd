@@ -43,7 +43,7 @@ func _process(delta):
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		if  collision.collider.has_method("on_player_attacked"):
-			collision.collider.on_player_attacked()
+			collision.collider.on_player_attacked(self)
 
 func on_attacked():
 	pass

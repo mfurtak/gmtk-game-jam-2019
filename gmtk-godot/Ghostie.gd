@@ -32,7 +32,7 @@ func _process(delta):
 	velocity.y =  max(min(player_direction.y * SPEED + velocity.y, TOP_SPEED), -TOP_SPEED)
 	position += velocity * delta
 	if(is_ghosting):
-		player.on_player_attacked()
+		player.on_player_attacked(self)
 	$DamagedAnimation.flip_h = velocity.x < 0
 	
 func on_attacked():
