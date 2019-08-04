@@ -11,7 +11,7 @@
 
 [node name="Exit" parent="." instance=ExtResource( 1 )]
 position = Vector2( 129, 480 )
-next_scene = "res://Level1.tscn"
+you_win = true
 
 [node name="Enemies" type="Node" parent="."]
 
