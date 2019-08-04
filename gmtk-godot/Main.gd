@@ -4,10 +4,18 @@ var current_level = "res://Level1.tscn"
 var level
 
 var blob_death_sfx = preload("res://audio/blob_death.wav")
+var thwomp1_sfx = preload("res://audio/thwomp1.wav")
+var thwomp2_sfx = preload("res://audio/thwomp2.wav")
+var thwomp3_sfx = preload("res://audio/thwomp3.wav")
 
 var sfx_library = {
-	"res://audio/blob_death.wav": blob_death_sfx
+	"res://audio/blob_death.wav": blob_death_sfx,
+	"res://audio/thwomp1.wav": thwomp1_sfx,
+	"res://audio/thwomp2.wav": thwomp2_sfx,
+	"res://audio/thwomp3.wav": thwomp3_sfx
 }
+
+var cur_sfx_category = 'any'
 
 func get_sfx(res_path):
 	return sfx_library[res_path]
@@ -65,9 +73,12 @@ func _on_exited(next_level):
 	print(next_level)
 	initialize_level(next_level)
 	
-func _on_sfx_requested(res_path, position):
+func _on_sfx_requested(res_path, position, interrupt = false, category = 'any'):
 	if $SfxPlayer.playing:
-		$SfxPlayer.stop()
+		if cur_sfx_category == category && !interrupt:
+			return
+		else:
+			$SfxPlayer.stop()
 	$SfxPlayer.stream = get_sfx(res_path)
 	$SfxPlayer.position = position
 	$SfxPlayer.play()

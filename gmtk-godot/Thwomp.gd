@@ -111,9 +111,7 @@ func get_random_thwomp_sfx():
 func play_thwomp_sfx():
 	var sfx = get_random_thwomp_sfx()
 	emit_signal("sfx_requested", sfx, self.position, false, 'thwomp')
-	
 
-	
 func _physics_process(delta):
 	#print(player.global_position)
 	#print(get_position())
