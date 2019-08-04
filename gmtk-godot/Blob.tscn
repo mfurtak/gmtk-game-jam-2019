@@ -23,4 +23,8 @@ shape = SubResource( 1 )
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 autostart = true
+
+[node name="ShieldAttackReactionTimer" type="Timer" parent="."]
+one_shot = true
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="ShieldAttackReactionTimer" to="." method="_on_ShieldAttackReactionTimer_timeout"]

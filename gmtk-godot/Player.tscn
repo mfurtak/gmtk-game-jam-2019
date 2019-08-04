@@ -6,18 +6,18 @@
 [ext_resource path="res://Bow.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Bow.gd" type="Script" id=5]
 [ext_resource path="res://Shield.tscn" type="PackedScene" id=6]
-[ext_resource path="res://player/gnome_down_idle.png" type="Texture" id=7]
-[ext_resource path="res://player/gnome_down_walk_1.png" type="Texture" id=8]
-[ext_resource path="res://player/gnome_down_walk_2.png" type="Texture" id=9]
-[ext_resource path="res://player/gnome_up_idle.png" type="Texture" id=10]
-[ext_resource path="res://player/gnome_up_walk_1.png" type="Texture" id=11]
-[ext_resource path="res://player/gnome_up_walk_2.png" type="Texture" id=12]
-[ext_resource path="res://player/gnome_right_idle.png" type="Texture" id=13]
-[ext_resource path="res://player/gnome_left_idle.png" type="Texture" id=14]
-[ext_resource path="res://player/gnome_left_walk_1.png" type="Texture" id=15]
-[ext_resource path="res://player/gnome_left_walk_2.png" type="Texture" id=16]
-[ext_resource path="res://player/gnome_right_walk_1.png" type="Texture" id=17]
-[ext_resource path="res://player/gnome_right_walk_2.png" type="Texture" id=18]
+[ext_resource path="res://player/gnome_up_idle.png" type="Texture" id=7]
+[ext_resource path="res://player/gnome_up_walk_1.png" type="Texture" id=8]
+[ext_resource path="res://player/gnome_up_walk_2.png" type="Texture" id=9]
+[ext_resource path="res://player/gnome_right_idle.png" type="Texture" id=10]
+[ext_resource path="res://player/gnome_left_idle.png" type="Texture" id=11]
+[ext_resource path="res://player/gnome_left_walk_1.png" type="Texture" id=12]
+[ext_resource path="res://player/gnome_left_walk_2.png" type="Texture" id=13]
+[ext_resource path="res://player/gnome_down_idle.png" type="Texture" id=14]
+[ext_resource path="res://player/gnome_right_walk_1.png" type="Texture" id=15]
+[ext_resource path="res://player/gnome_right_walk_2.png" type="Texture" id=16]
+[ext_resource path="res://player/gnome_down_walk_1.png" type="Texture" id=17]
+[ext_resource path="res://player/gnome_down_walk_2.png" type="Texture" id=18]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 22.0131, 14.7612 )
@@ -26,42 +26,42 @@ extents = Vector2( 22.0131, 14.7612 )
 animations = [ {
 "frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 9 ) ],
 "loop": true,
-"name": "down_walk",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ) ],
-"loop": true,
 "name": "up_walk",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 13 ) ],
-"loop": true,
-"name": "right_idle",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 14 ), ExtResource( 16 ) ],
-"loop": true,
-"name": "left_walk",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 14 ) ],
-"loop": true,
-"name": "left_idle",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "down_idle",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 13 ), ExtResource( 17 ), ExtResource( 13 ), ExtResource( 18 ) ],
-"loop": true,
-"name": "right_walk",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
+"name": "right_idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "left_walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "left_idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "down_idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 15 ), ExtResource( 10 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "right_walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
 "name": "up_idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 17 ), ExtResource( 14 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "down_walk",
 "speed": 5.0
 } ]
 
@@ -119,7 +119,7 @@ animation = "up_idle"
 playing = true
 
 [node name="InjuryRecoveryTimer" type="Timer" parent="."]
-wait_time = 0.25
+wait_time = 2.0
 [connection signal="timeout" from="ItemSwapTimer" to="." method="_on_ItemSwapTimer_timeout"]
 [connection signal="timeout" from="SwordAttackTimer" to="." method="_on_SwordAttackTimer_timeout"]
 [connection signal="timeout" from="ShieldAttackTimer" to="." method="_on_ShieldAttackTimer_timeout"]

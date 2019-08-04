@@ -125,8 +125,6 @@ func on_player_attacked(damage = 1):
 				take_damage(damage)
 		can_take_damage = false
 		$InjuryRecoveryTimer.start()
-	else:
-		print("CAN'T TOUCH THIS")
 			
 	if (current_health <= 0 && !is_dead):
 		on_death()
