@@ -33,7 +33,8 @@ func _process(delta):
 	position += velocity * delta
 	if(is_ghosting):
 		player.on_player_attacked()
-
+	$DamagedAnimation.flip_h = velocity.x < 0
+	
 func on_attacked():
 	pass
 
