@@ -126,6 +126,8 @@ func on_player_attacked():
 				pass
 		can_take_damage = false
 		$InjuryRecoveryTimer.start()
+	else:
+		print("CAN'T TOUCH THIS")
 			
 	#TODO send enemy to death scene
 	if (current_health <= 0 && !is_dead):

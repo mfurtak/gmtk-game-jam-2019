@@ -43,6 +43,7 @@ animations = [ {
 [node name="Player" type="KinematicBody2D" groups=[
 "ItemSwap",
 ]]
+editor/display_folded = true
 position = Vector2( 416, 192 )
 script = ExtResource( 1 )
 
