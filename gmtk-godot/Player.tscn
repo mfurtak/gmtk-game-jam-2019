@@ -8,10 +8,10 @@
 [ext_resource path="res://player_sword.png" type="Texture" id=6]
 [ext_resource path="res://player_bow.png" type="Texture" id=7]
 [ext_resource path="res://wilhelm.wav" type="AudioStream" id=8]
-[ext_resource path="res://Shield.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Sword.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Bow.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Bow.gd" type="Script" id=12]
+[ext_resource path="res://Sword.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Bow.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Bow.gd" type="Script" id=11]
+[ext_resource path="res://Shield.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 30 )
@@ -98,20 +98,19 @@ stream = ExtResource( 8 )
 [node name="Equipped" type="Node2D" parent="."]
 editor/display_folded = true
 
-[node name="Sword" parent="Equipped" instance=ExtResource( 10 )]
+[node name="Sword" parent="Equipped" instance=ExtResource( 9 )]
 position = Vector2( 16.6014, -19.8146 )
 
-[node name="Bow" parent="Equipped" instance=ExtResource( 11 )]
-script = ExtResource( 12 )
-
-[node name="DeathTimer" type="Timer" parent="."]
+[node name="Bow" parent="Equipped" instance=ExtResource( 10 )]
+script = ExtResource( 11 )
 
 [node name="Shield" parent="Equipped" groups=[
 "requests_shake",
-] instance=ExtResource( 9 )]
+] instance=ExtResource( 12 )]
+
+[node name="DeathTimer" type="Timer" parent="."]
 
 [node name="Tween" type="Tween" parent="."]
-
 [connection signal="timeout" from="ItemSwapTimer" to="." method="_on_ItemSwapTimer_timeout"]
 [connection signal="timeout" from="SwordAttackTimer" to="." method="_on_SwordAttackTimer_timeout"]
 [connection signal="timeout" from="ShieldAttackTimer" to="." method="_on_ShieldAttackTimer_timeout"]
