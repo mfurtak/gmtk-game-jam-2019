@@ -148,7 +148,7 @@ func _on_attack():
 				get_parent().add_child(arrow)
 				arrow.position = position + (facing_direction*ARROW_OFFSET)
 				arrow.direction = facing_direction
-				
+				$Equipped/Bow/SfxPlayer.play()
 				print("BOW ATTACK!!")
 		Items.SHIELD:
 			if not is_shield_attacking:
