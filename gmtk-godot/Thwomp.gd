@@ -12,8 +12,9 @@ var thwomp_sfx = [
 ]
 
 const SPEED = 10
-const TOP_SPEED = 500
+const TOP_SPEED = 200
 const DECELERATION = 0.1
+const DAMAGE = 10
 
 const sight_boxes = [
 	'LeftSight',
@@ -79,7 +80,7 @@ func _process(delta):
 		velocity = velocity.bounce(collision.normal)
 		if  collision.collider.has_method("on_player_attacked"):
 			play_thwomp_sfx()
-			collision.collider.on_player_attacked(self)
+			collision.collider.on_player_attacked(self, DAMAGE)
 	
 	if velocity.y > 0:		
 		$Anim.play("down")

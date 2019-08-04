@@ -9,6 +9,7 @@ var shield_attacked = false
 const SPEED = 4
 const TOP_SPEED = 90
 const DECELERATION = 0.2
+const DAMAGE = 10
 
 func on_sword_attacked(damage):
 	request_death_sfx()
@@ -41,7 +42,7 @@ func _physics_process(delta):
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		if  collision.collider.has_method("on_player_attacked"):
-			collision.collider.on_player_attacked(self)
+			collision.collider.on_player_attacked(self, DAMAGE)
 
 func _on_Timer_timeout():
 	direction = _randomize_direction()
