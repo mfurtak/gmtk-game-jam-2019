@@ -70,9 +70,18 @@ func _process(delta):
 	if collision:
 		if  collision.collider.has_method("on_player_attacked"):
 			collision.collider.on_player_attacked()
-			
-			
-
+	
+	if velocity.y > 0:		
+		$Anim.play("down")
+	elif velocity.y < 0:		
+		$Anim.play("up")
+	elif velocity.x < 0:		
+		$Anim.play("left")
+	elif velocity.x > 0:		
+		$Anim.play("right")
+	else:
+		$Anim.play("idle")
+	
 func on_attacked():
 	pass # self.queue_free()
 
