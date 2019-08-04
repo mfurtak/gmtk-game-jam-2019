@@ -54,7 +54,9 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Thwomp" type="KinematicBody2D"]
+[node name="Thwomp" type="KinematicBody2D" groups=[
+"requests_sfx",
+]]
 position = Vector2( 448, 352 )
 script = ExtResource( 1 )
 __meta__ = {

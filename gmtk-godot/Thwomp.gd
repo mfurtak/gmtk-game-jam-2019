@@ -1,11 +1,15 @@
 extends KinematicBody2D
 
+signal sfx_requested
+
 var direction = Vector2()
 var velocity = Vector2()
-var thwomp1_sfx = preload("res://audio/thwomp1.wav")
-var thwomp2_sfx = preload("res://audio/thwomp2.wav")
-var thwomp3_sfx = preload("res://audio/thwomp3.wav")
-var thwomp_sfx = [thwomp1_sfx,thwomp2_sfx,thwomp3_sfx]
+
+var thwomp_sfx = [
+	"res://audio/thwomp1.wav",
+	"res://audio/thwomp2.wav",
+	"res://audio/thwomp3.wav"
+]
 
 const SPEED = 10
 const TOP_SPEED = 500
@@ -101,13 +105,13 @@ func on_shield_attacked(damage):
 	velocity.y = -velocity.y * damage
 
 func get_random_thwomp_sfx():
-	return thwomp_sfx[randi() % thwomp_sfx.size()-1]
-
+	return thwomp_sfx[(randi() % 3)]
+	
 func play_thwomp_sfx():
-	if $SfxPlayer.playing:
-		$SfxPlayer.stop()
-	$SfxPlayer.stream = get_random_thwomp_sfx()
-	$SfxPlayer.play()
+	var sfx = get_random_thwomp_sfx()
+	emit_signal("sfx_requested", sfx, self.position, false, 'thwomp')
+	
+
 	
 func _physics_process(delta):
 	#print(player.global_position)
