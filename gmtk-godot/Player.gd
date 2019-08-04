@@ -116,17 +116,16 @@ func _process(delta):
 	$ItemSwapTimer.wait_time = item_duration
 	_render()
 
-func on_player_attacked(damage = 1):
+func on_player_attacked(attacker, damage = 1):
 	if can_take_damage:
-		match current_item:
-			Items.SHIELD:
-				pass
-			_:
-				take_damage(damage)
+		if (current_item == Items.SHIELD && -attacker.direction == facing_direction):
+			print("shield block")
+		else:
+			take_damage(damage)
 		can_take_damage = false
 		$InjuryRecoveryTimer.start()
 	else:
-		print("CAN'T TOUCH THIS")
+		pass
 			
 	if (current_health <= 0 && !is_dead):
 		on_death()
