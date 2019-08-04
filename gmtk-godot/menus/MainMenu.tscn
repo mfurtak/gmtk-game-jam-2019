@@ -37,6 +37,7 @@ margin_bottom = 576.0
 [node name="GameName" type="Label" parent="LeftRightSplit/LeftSide"]
 margin_right = 306.0
 margin_bottom = 77.0
+rect_pivot_offset = Vector2( 90, 60 )
 custom_fonts/font = SubResource( 1 )
 text = "Metro Gnome"
 

@@ -4,8 +4,6 @@ var current_level = "res://Level1.tscn"
 var level
 
 func _ready():
-	print("Main ready")
-	
 	# TODO(mfurtak) this is still needed?
 	for node in get_tree().get_nodes_in_group('ItemSwap'):
 		$Player/ItemSwapTimer.connect("timeout", node, "_on_ItemSwapTimer_timeout")
