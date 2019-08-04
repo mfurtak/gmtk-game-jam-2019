@@ -8,18 +8,18 @@
 [ext_resource path="res://Bow.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Bow.gd" type="Script" id=7]
 [ext_resource path="res://Shield.tscn" type="PackedScene" id=8]
-[ext_resource path="res://player/gnome_down_idle.png" type="Texture" id=9]
-[ext_resource path="res://player/gnome_up_idle.png" type="Texture" id=10]
-[ext_resource path="res://player/gnome_up_walk_1.png" type="Texture" id=11]
-[ext_resource path="res://player/gnome_up_walk_2.png" type="Texture" id=12]
-[ext_resource path="res://player/gnome_right_idle.png" type="Texture" id=13]
-[ext_resource path="res://player/gnome_right_walk_1.png" type="Texture" id=14]
-[ext_resource path="res://player/gnome_right_walk_2.png" type="Texture" id=15]
+[ext_resource path="res://player/gnome_right_idle.png" type="Texture" id=9]
+[ext_resource path="res://player/gnome_down_idle.png" type="Texture" id=10]
+[ext_resource path="res://player/gnome_down_walk_1.png" type="Texture" id=11]
+[ext_resource path="res://player/gnome_down_walk_2.png" type="Texture" id=12]
+[ext_resource path="res://player/gnome_up_idle.png" type="Texture" id=13]
+[ext_resource path="res://player/gnome_up_walk_1.png" type="Texture" id=14]
+[ext_resource path="res://player/gnome_up_walk_2.png" type="Texture" id=15]
 [ext_resource path="res://player/gnome_left_idle.png" type="Texture" id=16]
 [ext_resource path="res://player/gnome_left_walk_1.png" type="Texture" id=17]
 [ext_resource path="res://player/gnome_left_walk_2.png" type="Texture" id=18]
-[ext_resource path="res://player/gnome_down_walk_1.png" type="Texture" id=19]
-[ext_resource path="res://player/gnome_down_walk_2.png" type="Texture" id=20]
+[ext_resource path="res://player/gnome_right_walk_1.png" type="Texture" id=19]
+[ext_resource path="res://player/gnome_right_walk_2.png" type="Texture" id=20]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 22.0131, 14.7612 )
@@ -28,17 +28,22 @@ extents = Vector2( 22.0131, 14.7612 )
 animations = [ {
 "frames": [ ExtResource( 9 ) ],
 "loop": true,
+"name": "right_idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
 "name": "down_idle",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ) ],
 "loop": true,
-"name": "up_walk",
+"name": "down_walk",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 15 ) ],
 "loop": true,
-"name": "right_walk",
+"name": "up_walk",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 16 ), ExtResource( 18 ) ],
@@ -46,14 +51,9 @@ animations = [ {
 "name": "left_walk",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ) ],
+"frames": [ ExtResource( 9 ), ExtResource( 19 ), ExtResource( 9 ), ExtResource( 20 ) ],
 "loop": true,
-"name": "right_idle",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "up_idle",
+"name": "right_walk",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 16 ) ],
@@ -61,16 +61,16 @@ animations = [ {
 "name": "left_idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ), ExtResource( 19 ), ExtResource( 9 ), ExtResource( 20 ) ],
+"frames": [ ExtResource( 13 ) ],
 "loop": true,
-"name": "down_walk",
+"name": "up_idle",
 "speed": 5.0
 } ]
 
 [node name="Player" type="KinematicBody2D" groups=[
 "ItemSwap",
+"requests_shake",
 ]]
-editor/display_folded = true
 position = Vector2( 416, 192 )
 script = ExtResource( 1 )
 

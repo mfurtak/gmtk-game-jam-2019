@@ -81,6 +81,9 @@ func _physics_process(delta):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if is_dead:
+		return
+	
 	moving_direction.x = 0
 	moving_direction.y = 0
 	is_action_pressed = false
@@ -114,28 +117,24 @@ func _process(delta):
 	_render()
 
 func on_player_attacked(damage = 1):
-	var should_shake = true
 	if can_take_damage:
 		match current_item:
-			Items.SWORD:
-				current_health = max(MIN_HEALTH, current_health - 1)
-			Items.BOW:
-				current_health = max(MIN_HEALTH, current_health - 1)
 			Items.SHIELD:
-				should_shake = false
-			_:
 				pass
+			_:
+				take_damage(damage)
 		can_take_damage = false
 		$InjuryRecoveryTimer.start()
 	else:
 		print("CAN'T TOUCH THIS")
 			
 	if (current_health <= 0 && !is_dead):
-		emit_signal("shake_requested", 0.3, 2)
 		on_death()
-	elif should_shake:
-		emit_signal("shake_requested", 0.2, 15, damage)
-		
+
+func take_damage(damage):
+	current_health = max(MIN_HEALTH, current_health - damage)
+	emit_signal("shake_requested", 0.2, 15, damage)
+
 func _on_attack():
 	match current_item:
 		Items.SWORD:
@@ -280,6 +279,7 @@ func _get_rotation():
 func on_death():
 	is_dead = true
 	$WilhelmScream.play()
+	velocity = Vector2()
 	
 	#$Tween.interpolate_property(self, "position", position, 
 	#	Vector2(position.x, position.y + 1000), 1,
