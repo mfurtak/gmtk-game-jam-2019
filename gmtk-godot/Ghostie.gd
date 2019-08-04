@@ -4,8 +4,9 @@ var direction = Vector2()
 var velocity = Vector2()
 var is_ghosting = false
 const MAX_HEALTH = 30.0
-const SPEED = 5
-const TOP_SPEED = 60
+const SPEED = 10
+const TOP_SPEED = 70
+const DAMAGE = 10
 
 var current_health = MAX_HEALTH
 
@@ -32,7 +33,7 @@ func _process(delta):
 	velocity.y =  max(min(player_direction.y * SPEED + velocity.y, TOP_SPEED), -TOP_SPEED)
 	position += velocity * delta
 	if(is_ghosting):
-		player.on_player_attacked(self)
+		player.on_player_attacked(self, DAMAGE)
 	$DamagedAnimation.flip_h = velocity.x < 0
 	
 func on_attacked():
