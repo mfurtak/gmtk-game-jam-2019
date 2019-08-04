@@ -3,7 +3,7 @@ extends KinematicBody2D
 var direction = Vector2()
 var velocity = Vector2()
 
-const SPEED = 5
+const SPEED = 10
 const TOP_SPEED = 40
 const DECELERATION = 0.9
 
