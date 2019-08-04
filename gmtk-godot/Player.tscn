@@ -22,7 +22,7 @@
 [ext_resource path="res://player/gnome_left_walk_2.png" type="Texture" id=20]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 30, 30 )
+extents = Vector2( 22.0131, 14.7612 )
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
@@ -125,6 +125,7 @@ script = ExtResource( 7 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="GnomeSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -20 )
 frames = SubResource( 5 )
 animation = "left_idle"
 playing = true
