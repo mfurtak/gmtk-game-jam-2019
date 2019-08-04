@@ -180,9 +180,28 @@ func _on_ItemSwapTimer_timeout():
 	_render()
 
 func _render():
-	_render_color()
 	_render_facing_direction()
 	
+	var moving = false
+	if abs(moving_direction.x) > 0 || abs(moving_direction.y) > 0:
+		moving = true
+	
+	var animation_suffix = "_idle"
+	if moving:
+		animation_suffix = "_walk"
+	
+	var animation_prefix = "up_"
+	if facing_direction.y < 0:
+		animation_prefix = "up"
+	elif facing_direction.y > 0:
+		animation_prefix = "down"
+	elif facing_direction.x < 0:
+		animation_prefix = "left"
+	elif facing_direction.x > 0:
+		animation_prefix = "right"
+	
+	$GnomeSprite.play(animation_prefix + animation_suffix)
+			
 	_do_sword_stuff()
 	_do_shield_stuff()
 	_do_bow_stuff()
@@ -222,14 +241,6 @@ func _do_bow_stuff():
 	else:
 		$Equipped/Bow.hide()
 		
-func _render_color():
-	var next_sprite = _get_item_sprite()
-	if next_sprite != current_sprite:
-		current_sprite = next_sprite
-		for sprite in sprites:
-			sprite.hide()
-		current_sprite.show()
-
 func _get_item_sprite():
 	match current_item:
 		Items.SWORD:
@@ -246,7 +257,6 @@ func _render_facing_direction():
 	var next_rotation = _get_rotation()
 	if current_rotation != next_rotation:
 		current_rotation = next_rotation
-	current_sprite.rotation = current_rotation
 
 
 func _get_rotation():
