@@ -19,7 +19,6 @@ next_scene = "res://Level1.tscn"
 [node name="Enemies" type="Node" parent="."]
 
 [node name="GoombaHorizontal" parent="Enemies" instance=ExtResource( 2 )]
-editor/display_folded = true
 position = Vector2( 719.373, 80.3463 )
 script = ExtResource( 3 )
 

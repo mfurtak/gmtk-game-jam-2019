@@ -7,6 +7,7 @@ const TOP_SPEED = 1
 # Go right
 var direction = Vector2()
 var velocity = Vector2()
+var can_move = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,6 +21,7 @@ func _process(delta):
 	
 	var collision = move_and_collide(velocity)	
 	if collision:
+		can_move = false
 		$GoombaWaitTimer.start()
 		velocity.x = 0
 		direction.x = -direction.x
@@ -32,4 +34,6 @@ func on_sword_attacked(damage):
 
 func on_shield_attacked(damage):
 	pass
-	
+
+func _on_GoombaWaitTimer_timeout():
+	can_move = true
