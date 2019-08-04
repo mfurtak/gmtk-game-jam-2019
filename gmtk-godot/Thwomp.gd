@@ -4,14 +4,28 @@ var direction = Vector2()
 var velocity = Vector2()
 
 const SPEED = 10
-const TOP_SPEED = 40
-const DECELERATION = 0.9
+const TOP_SPEED = 500
+const DECELERATION = 0.1
 
-const something = {
-	'LeftRayCast': Vector2(-1, 0),
-	'RightRayCast': Vector2(1, 0),
-	'UpRayCast': Vector2(0, -1),
-	'DownRayCast': Vector2(0, 1),
+const sight_boxes = [
+	'LeftSight',
+	'RightSight',
+	'UpSight',
+	'DownSight'
+]
+
+const sight_boxes_to_directions = {
+	'LeftSight': Vector2(-1, 0),
+	'RightSight': Vector2(1, 0),
+	'UpSight': Vector2(0, -1),
+	'DownSight': Vector2(0, 1),
+}
+
+const sight_boxes_to_velocity_masks = {
+	'LeftSight': Vector2(1, 0),
+	'RightSight': Vector2(1, 0),
+	'UpSight': Vector2(0, 1),
+	'DownSight': Vector2(0, 1),
 }
 
 onready var player = get_node("/root/Main/Player")
@@ -27,16 +41,28 @@ func is_active_caster(caster):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var caster_hit = false
-	for key in something:
-		var caster = get_node(key)
-		if is_active_caster(caster):
-			caster_hit = true
-			direction = something.get(key)
-			velocity.x += max(min(direction.x * SPEED, TOP_SPEED), -TOP_SPEED)
-			velocity.y += max(min(direction.y * SPEED, TOP_SPEED), -TOP_SPEED)
+	var player_seen = false
 
-	if !caster_hit:
+	for sight_box in sight_boxes_to_directions.keys():
+		var bodies = get_node(sight_box).get_overlapping_bodies()
+		if bodies.has(player):
+			player_seen = true
+			direction = sight_boxes_to_directions.get(sight_box)
+			
+			var delta_velocity_x = direction.x * SPEED
+			var delta_velocity_y = direction.y * SPEED
+			
+			velocity.x = clamp(velocity.x + delta_velocity_x, -TOP_SPEED, TOP_SPEED)
+			velocity.y = clamp(velocity.y + delta_velocity_y, -TOP_SPEED, TOP_SPEED)
+			
+			velocity *= sight_boxes_to_velocity_masks.get(sight_box)
+
+			# It's now possible for the player to be overlapping more than one
+			# sight line. To avoid creating diagonal movement, only process
+			# the first overlap
+			break
+
+	if !player_seen:
 		direction = Vector2()
 		velocity = lerp(velocity, Vector2(), DECELERATION)
 
@@ -44,6 +70,8 @@ func _process(delta):
 	if collision:
 		if  collision.collider.has_method("on_player_attacked"):
 			collision.collider.on_player_attacked()
+			
+			
 
 func on_attacked():
 	pass # self.queue_free()
