@@ -23,6 +23,10 @@ func initialize_level(level_file):
 			old_exit.disconnect("won", self, "_on_won")
 		level.queue_free()
 	
+	# Destroy all arrows that are stuck in places
+	for node in get_tree().get_nodes_in_group('projectile'):
+		node.queue_free()
+	
 	level = load(level_file).instance() 
 	level.set_name("CurrentLevel")
 	add_child(level)
