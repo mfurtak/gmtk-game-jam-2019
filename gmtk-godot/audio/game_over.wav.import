@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/wilhelm.wav-09a959e8d8a67e46f64f5337a876de04.sample"
+path="res://.import/game_over.wav-93bb809a2bb5c7d8aee9c599f7f43ae9.sample"
 
 [deps]
 
-source_file="res://wilhelm.wav"
-dest_files=[ "res://.import/wilhelm.wav-09a959e8d8a67e46f64f5337a876de04.sample" ]
+source_file="res://audio/game_over.wav"
+dest_files=[ "res://.import/game_over.wav-93bb809a2bb5c7d8aee9c599f7f43ae9.sample" ]
 
 [params]
 
