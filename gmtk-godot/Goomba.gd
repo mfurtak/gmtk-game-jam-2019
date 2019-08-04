@@ -32,5 +32,4 @@ func on_sword_attacked(damage):
 
 func on_shield_attacked(damage):
 	pass
-#	self.queue_free()
 	
