@@ -112,20 +112,23 @@ func _process(delta):
 	$ItemSwapTimer.wait_time = item_duration
 	_render()
 
-func on_player_attacked():
+func on_player_attacked(damage = 1):
+	var should_shake = true
 	match current_item:
 		Items.SWORD:
-			current_health = max(MIN_HEALTH, current_health - 1)
+			current_health = max(MIN_HEALTH, current_health - damage)
 		Items.BOW:
-			current_health = max(MIN_HEALTH, current_health - 1)
+			current_health = max(MIN_HEALTH, current_health - damage)
 		Items.SHIELD:
-			pass
+			should_shake = false
 		_:
 			print("spillover in get_item_name")
-			
-	#TODO send enemy to death scene
+	
 	if (current_health <= 0 && !is_dead):
-		on_death();
+		emit_signal("shake_requested", 0.3, 2)
+		on_death()
+	elif should_shake:
+		emit_signal("shake_requested", 0.2, 15, damage)
 		
 func _on_attack():
 	match current_item:
