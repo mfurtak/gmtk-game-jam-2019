@@ -53,17 +53,16 @@ func _physics_process(delta):
 
 func _on_entered(body):
 	if visible and body.has_method('on_shield_attacked'):
-		var damage = 0
-		if get_shield_attacking():
-			damage = 2
-		else:
-			damage = 1.2
-			
+		var damage = 1
 		body.on_shield_attacked(damage)
 		emit_signal("shake_requested")
 		
 func set_shield_attacking(new_attacking):
-    attacking = new_attacking
+	attacking = new_attacking
+	if attacking:
+		for body in get_overlapping_bodies():
+			if body.has_method('on_shield_attacked'):
+				body.on_shield_attacked(10)
 
 func get_shield_attacking():
     return attacking
