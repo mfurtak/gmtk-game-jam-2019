@@ -7,7 +7,7 @@ const SPEED = 4
 const TOP_SPEED = 90
 const DECELERATION = 0.2
 
-func on_attacked():
+func on_sword_attacked(damage):
 	self.queue_free()
 
 func on_shot(damage):

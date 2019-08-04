@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Exit.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Pickup.tscn" type="PackedScene" id=2]
-[ext_resource path="res://sprites/shield.png" type="Texture" id=3]
-[ext_resource path="res://sprites/sword.png" type="Texture" id=4]
-[ext_resource path="res://sprites/bow.png" type="Texture" id=5]
-[ext_resource path="res://PlayerSpawn.tscn" type="PackedScene" id=6]
-[ext_resource path="res://simple_tileset.tres" type="TileSet" id=7]
+[ext_resource path="res://Blob.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Pickup.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sprites/shield.png" type="Texture" id=4]
+[ext_resource path="res://sprites/sword.png" type="Texture" id=5]
+[ext_resource path="res://sprites/bow.png" type="Texture" id=6]
+[ext_resource path="res://PlayerSpawn.tscn" type="PackedScene" id=7]
+[ext_resource path="res://simple_tileset.tres" type="TileSet" id=8]
 
 [node name="Level2" type="Node2D"]
 
@@ -16,31 +17,46 @@ next_scene = "res://Level3.tscn"
 
 [node name="Enemies" type="Node" parent="."]
 
+[node name="Blob" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 493.265, 40.3217 )
+
+[node name="Blob2" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 636.251, 105.121 )
+
+[node name="Blob3" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 731.576, 38.1796 )
+
+[node name="Blob4" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 91.6176, 70.3113 )
+
+[node name="Blob5" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 381.339, 347.716 )
+
 [node name="Pickups" type="Node" parent="."]
 
-[node name="ShieldPickup" parent="Pickups" instance=ExtResource( 2 )]
+[node name="ShieldPickup" parent="Pickups" instance=ExtResource( 3 )]
 visible = false
 position = Vector2( 256, 576 )
-item_image = ExtResource( 3 )
-
-[node name="SwordPickup" parent="Pickups" instance=ExtResource( 2 )]
-visible = false
-position = Vector2( 129.062, 192 )
 item_image = ExtResource( 4 )
 
-[node name="BowPickup" parent="Pickups" instance=ExtResource( 2 )]
+[node name="SwordPickup" parent="Pickups" instance=ExtResource( 3 )]
 visible = false
-position = Vector2( 129.062, 576 )
+position = Vector2( 129.062, 192 )
 item_image = ExtResource( 5 )
 
-[node name="Pickup" parent="Pickups" instance=ExtResource( 2 )]
+[node name="BowPickup" parent="Pickups" instance=ExtResource( 3 )]
+visible = false
+position = Vector2( 129.062, 576 )
+item_image = ExtResource( 6 )
+
+[node name="Pickup" parent="Pickups" instance=ExtResource( 3 )]
 visible = false
 
-[node name="PlayerSpawn" parent="." instance=ExtResource( 6 )]
+[node name="PlayerSpawn" parent="." instance=ExtResource( 7 )]
 position = Vector2( 38.0219, 320.14 )
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = ExtResource( 7 )
+tile_set = ExtResource( 8 )
 cell_size = Vector2( 32, 32 )
 cell_quadrant_size = 32
 format = 1
