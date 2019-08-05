@@ -13,8 +13,16 @@ export_presets.cfg
 # Mac files
 .DS_Store
 
+# Unused assets
+assets/
+
 # Export files
 gmtk-godot/Archive.zip
+gmtk-godot/index.js
+gmtk-godot/index.pck
+gmtk-godot/index.png
+gmtk-godot/index.png.import
+gmtk-godot/index.wasm
 gmtk-godot/gmtk-godot.js
 gmtk-godot/gmtk-godot.pck
 gmtk-godot/gmtk-godot.png
