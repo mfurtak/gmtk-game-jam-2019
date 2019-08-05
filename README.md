@@ -15,8 +15,8 @@ Created for the [2019 GMTK Game Jam](https://itch.io/jam/gmtk-2019) by:
 * [mfurtak](https://github.com/mfurtak)
 
 ## Resource acknowledgements:
-[Game over music](https://opengameart.org/content/game-over-theme): CleytonKauffman - CC-BY-SA 3.0
-[Sword swing sfx](https://opengameart.org/content/3-melee-sounds): remaxim - CC0
-[Adventuring theme](https://opengameart.org/content/hold-the-line-orchestral-remix): Bart K. - CC-BY-SA 3.0
-[Bow shot sfx](https://opengameart.org/content/bow-arrow-shot): dorkster - CC-BY-SA 3.0
-[Thwomp sfx](https://opengameart.org/content/jump-landing): Macro - CC0
+* [Game over music](https://opengameart.org/content/game-over-theme): CleytonKauffman - CC-BY-SA 3.0
+* [Sword swing sfx](https://opengameart.org/content/3-melee-sounds): remaxim - CC0
+* [Adventuring theme](https://opengameart.org/content/hold-the-line-orchestral-remix): Bart K. - CC-BY-SA 3.0
+* [Bow shot sfx](https://opengameart.org/content/bow-arrow-shot): dorkster - CC-BY-SA 3.0
+* [Thwomp sfx](https://opengameart.org/content/jump-landing): Macro - CC0
